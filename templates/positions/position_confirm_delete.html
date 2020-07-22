@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="card">
+				<div class="card-header">Excluir Cargo</div>
+				<div class="card-body">
+					<form action="" method="post" novalidate="novalidate">
+						{% csrf_token %}
+                        <div class="form-group">
+                            <p>Deseja excluir o cargo de "{{ object }}"?</p>
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa fa-ban"></i> Excluir
+                        </button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

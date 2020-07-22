@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="card">
+				<div class="card-header">Editar Cargo</div>
+				<div class="card-body">
+					<form action="" method="post" novalidate="novalidate">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="cc-payment" class="control-label mb-1">{{ form.position.label_tag }}</label>
+							{{ form.position }}
+						</div>
+						<div class="form-group">
+							<label for="cc-payment" class="control-label mb-1">{{ form.handling.label_tag }}</label>
+							{{ form.handling }}
+						</div>
+						<div class="form-group">
+							<label for="cc-payment" class="control-label mb-1">{{ form.abbreviation.label_tag }}</label>
+							{{ form.abbreviation }}
+						</div>
+						<div class="form-actions form-group">
+							<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+						</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

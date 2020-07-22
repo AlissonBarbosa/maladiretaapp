@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="title-3 m-b-30">Cargos</h3>
+            <div class="table-responsive table--no-card m-b-30">
+                <table class="table table-borderless table-striped table-data3">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tratamento</th>
+                            <th>Abreviatura</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for position in object_list %}
+                            <tr>
+                                <td>{{ position.position }}</td>
+                                <td>{{position.handling}}</td>
+                                <td>{{position.abbreviation}}</td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'positions:editar' position.pk %}'">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'positions:excluir' position.pk %}'">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td>Sem cadastros</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
