@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 class Position(models.Model):
-    position = models.CharField(max_length=150)
+    position = models.CharField(max_length=150, unique=True)
     handling = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=50)
 
@@ -13,3 +13,5 @@ class Position(models.Model):
     def __str__(self):
         return self.position
     
+    class Meta:
+        ordering = ["position"]

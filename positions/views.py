@@ -13,10 +13,15 @@ class PositionCreateView(LoginRequiredMixin,CreateView):
 
 class PositionListView(LoginRequiredMixin, ListView):
     model = Position
-    paginate = 100
+    paginate_by = 10
 
     def get_queryset(self):
-        return Position.objects.all()
+        filter_value = self.request.GET.get('filter')
+        if filter_value:
+            context = Position.objects.filter(position = filter_value)
+        else:
+            context = Position.objects.all()
+        return context
     
 class PositionDetailView(LoginRequiredMixin, DetailView):
     model = Position

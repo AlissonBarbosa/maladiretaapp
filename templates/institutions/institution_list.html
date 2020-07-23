@@ -6,19 +6,19 @@
     <div class="row">
         <div class="col-md-12">
             <!-- DATA TABLE -->
-            <h3 class="title-3 m-b-30">Cargos</h3>
+            <h3 class="title-3 m-b-30">Instituições</h3>
             <div class="table-data__tool">
                 <div class="table-data__tool-left">
                     <form method="get">
                         <div class="rs-select2--light rs-select2--lg">
-                            <input type="text" id="filter" name="filter" placeholder="Digite um cargo" class="form-control">
+                            <input type="text" id="filter" name="filter" placeholder="Digite uma instituição" class="form-control">
                         </div>
                         <button class="au-btn-filter">
                             <i class="zmdi zmdi-search"></i>Buscar</button>
                     </form>
                 </div>
                 <div class="table-data__tool-right">
-                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'positions:cadastrar' %}'">
+                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'institutions:cadastrar' %}'">
                         <i class="zmdi zmdi-plus"></i>Criar</button>
                 </div>
                 
@@ -28,23 +28,25 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Tratamento</th>
-                            <th>Abreviatura</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Telefone</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for position in object_list %}
+                        {% for institution in object_list %}
                             <tr>
-                                <td>{{ position.position }}</td>
-                                <td>{{position.handling}}</td>
-                                <td>{{position.abbreviation}}</td>
+                                <td>{{ institution.name }}</td>
+                                <td>{{ institution.city }}</td>
+                                <td>{{ institution.state }}</td>
+                                <td>{{ institution.phone_number }}</td>
                                 <td>
                                     <div class="table-data-feature">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'positions:editar' position.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'institutions:editar' institution.pk %}'">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'positions:excluir' position.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'institutions:excluir' institution.pk %}'">
                                             <i class="zmdi zmdi-delete"></i>
                                         </button>
                                     </div>
@@ -54,6 +56,7 @@
                         {% empty %}
                             <tr>
                                 <td>Sem cadastros</td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
