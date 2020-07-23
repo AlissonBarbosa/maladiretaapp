@@ -129,7 +129,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
-                                <a href="{% url core:inicio %}">
+                                <a href="{% url 'core:inicio' %}">
                                     <img src="{% static 'images/icon/logo.png' %}" alt="Mala Direta" />
                                 </a>
                             </div>
@@ -161,8 +161,8 @@
                     {% endif %}
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
-                            <li class="active has-sub">
-                                <a class="js-arrow" href="{% url 'core:inicio' %}">
+                            <li>
+                                <a href="{% url 'core:inicio' %}">
                                     <i class="fas fa-home"></i>Início</a>
                             </li>
                             <li class="has-sub">
