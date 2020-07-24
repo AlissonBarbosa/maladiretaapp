@@ -6,10 +6,18 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Position
 from .forms import PositionForm
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 
-class PositionCreateView(LoginRequiredMixin,CreateView):
+class PositionCreateView(LoginRequiredMixin, CreateView):
     model = Position
     form_class = PositionForm
+    success_url = reverse_lazy('positions:cargos')
+
+    def form_valid(self,form):
+        super(PositionCreateView,self).form_valid(form)
+        messages.success(self.request, 'Cargo criado com sucesso!')        
+        return HttpResponseRedirect(self.get_success_url())
 
 class PositionListView(LoginRequiredMixin, ListView):
     model = Position
@@ -30,7 +38,17 @@ class PositionDeleteView(LoginRequiredMixin, DeleteView):
     model = Position
     success_url = reverse_lazy('positions:cargos')
 
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Cargo excluído com sucesso!')
+        return super(PositionDeleteView, self).delete(request, *args, **kwargs)
+
 class PositionUpdateView(LoginRequiredMixin, UpdateView):
     model = Position
     form_class = PositionForm
     template_name = 'positions/position_update_form.html'
+    success_url = reverse_lazy('positions:cargos')
+
+    def form_valid(self,form):
+        super(PositionUpdateView,self).form_valid(form)
+        messages.success(self.request, 'Cargo atualizado com sucesso!')        
+        return HttpResponseRedirect(self.get_success_url())

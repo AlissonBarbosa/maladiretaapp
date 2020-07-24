@@ -2,6 +2,10 @@
 
 {% block content %}
 
+{% if messages %}
+{% include 'messages/message.html' %}
+{% endif %}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -43,6 +47,9 @@
                                 <td>{{ institution.phone_number }}</td>
                                 <td>
                                     <div class="table-data-feature">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" onclick="window.location.href='{% url 'institutions:instituicao' institution.pk %}'">
+                                            <i class="zmdi zmdi-file-text"></i>
+                                        </button>
                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'institutions:editar' institution.pk %}'">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
