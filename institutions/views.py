@@ -18,7 +18,7 @@ class InstitutionCreateView(LoginRequiredMixin,CreateView):
 
     def form_valid(self,form):
         super(InstitutionCreateView,self).form_valid(form)
-        messages.success(self.request, 'Instituição criada com sucesso!')        
+        messages.success(self.request, 'Instituição criada com sucesso!')
         return HttpResponseRedirect(self.get_success_url())
 
 class InstitutionDetailView(LoginRequiredMixin, DetailView):

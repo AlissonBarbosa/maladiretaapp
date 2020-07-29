@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-header">Criar Autoridade</div>
+				<div class="card-body">
+					<form action="" method="post" novalidate="novalidate">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="cc-payment" class="control-label mb-1">{{ form.name.label_tag }}</label>
+							{{ form.name }}
+						</div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.birth.label_tag }}</label>
+                                    {{ form.birth }}
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.position.label_tag }}</label>
+                                    {{ form.position }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.institution.label_tag }}</label>
+                                    {{ form.institution }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions form-group">
+                            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                        </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

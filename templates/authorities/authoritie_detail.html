@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-header">Autoridade</div>
+				<div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Criado em:</label>
+                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.created }}" disabled="" class="form-control">
+                            </div> 
+                        </div>
+                    </div>
+					<div class="form-group">
+						<label for="cc-payment" class="control-label mb-1" disabled="">Nome:</label>
+						<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.name }}" disabled="" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1" disabled="">Data de nascimento:</label>
+                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.birth }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1" disabled="">Cargo:</label>
+                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.position }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1" disabled="">Instituição:</label>
+                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.institution }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %} 
