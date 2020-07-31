@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if form.errors %}
+{% include 'messages/error.html' %}
+{% endif %}
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-8">
 			<div class="card">
-				<div class="card-header">Atualizar Autoridade</div>
+				<div class="card-header">Editar Autoridade</div>
 				<div class="card-body">
 					<form action="" method="post" novalidate="novalidate">
 						{% csrf_token %}
@@ -14,21 +19,33 @@
 							{{ form.name }}
 						</div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.birth.label_tag }}</label>
                                     {{ form.birth }}
                                 </div>
                             </div>
-                            <div class="col-8">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.email.label_tag }}</label>
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.phone_number.label_tag }}</label>
+                                    {{ form.phone_number }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.position.label_tag }}</label>
                                     {{ form.position }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.institution.label_tag }}</label>
                                     {{ form.institution }}

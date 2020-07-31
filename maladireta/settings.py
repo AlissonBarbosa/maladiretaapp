@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os, environ, django_heroku, dj_database_url
 from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ('pt-br', _('Brazilian Portuguese')),
+    ('en', _('English')),
+]
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',
@@ -56,6 +62,7 @@ INSTALLED_APPS = [
     'positions',
     'institutions',
     'authorities',
+    'leadership',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 

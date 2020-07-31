@@ -39,7 +39,7 @@ class AuthoritieListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
         if filter_value:
-            context = Authoritie.objects.filter(name = filter_value)
+            context = Authoritie.objects.search(filter_value)
         else:
             context = Authoritie.objects.all()
         return context

@@ -2,13 +2,20 @@ from django.db import models
 
 from django.urls import reverse
 
+class AuthoritieManager(models.Manager):
+    def search(self, query):
+        return self.get_queryset().filter(models.Q(institution__name__icontains=query) | models.Q(position__position__icontains=query) | (models.Q(name__icontains=query) | (models.Q(email__icontains=query))))
+
 class Authoritie(models.Model):
     name = models.CharField(max_length=250)
-    genre = models.CharField(max_length=25)
-    created = models.DateField(auto_now_add=True)
-    birth = models.DateField()
+    updated = models.DateField(auto_now_add=True)
+    birth = models.DateField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
     position = models.ForeignKey('positions.Position', on_delete=models.CASCADE, blank=True, null=True)
     institution = models.ForeignKey('institutions.Institution', on_delete=models.CASCADE, blank=True, null=True)
+
+    objects = AuthoritieManager()
 
     def get_absolute_url(self):
         return reverse('authorities:autoridade', args=[str(self.id)])

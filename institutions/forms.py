@@ -4,7 +4,7 @@ from .models import Institution
 class InstitutionForm(forms.ModelForm):
     class Meta:
         model = Institution
-        fields = ['name', 'phone_number', 'city', 'street', 'number', 'complement', 'cep', 'state']
+        fields = '__all__'
         labels = {
             'name': 'Nome',
             'phone_number': 'Telefone',
@@ -13,15 +13,23 @@ class InstitutionForm(forms.ModelForm):
             'number': 'Número',
             'complement': 'Complemento',
             'cep': 'CEP',
-            'state': 'Estado'
+            'state': 'Estado',
+            'neighborhood': 'Bairro'
         }
         widgets = {
             'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'phone_number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'phone_number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'data-mask':"(00)0000-0000"}),
             'city': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'street': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'complement': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'cep': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'state': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
+            'cep': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'data-mask':"00.000-000"}),
+            'state': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'neighborhood': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
+        }
+        error_messages = {
+            'name': {
+                'required': "Nome é um campo obrigatório"
+            }
         }

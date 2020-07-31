@@ -15,3 +15,14 @@ class PositionForm(forms.ModelForm):
             'handling' : forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off',}),
             'abbreviation' : forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off',})
         }
+        error_messages = {
+            'position' : {
+                'required': 'Nome é um campo obrigatorio'
+            },
+            'handling' : {
+                'required': 'Tratamento é um campo obrigatorio'
+            },
+            'abbreviation': {
+                'required': 'Abreviação é um campo obrigatorio'
+            }
+        }

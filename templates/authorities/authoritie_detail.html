@@ -8,39 +8,162 @@
 				<div class="card-header">Autoridade</div>
 				<div class="card-body">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="cc-payment" class="control-label mb-1">Criado em:</label>
-                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.created }}" disabled="" class="form-control">
+                                <label for="cc-payment" class="control-label mb-1">Atualizado em {{ authoritie.updated }}</label>
                             </div> 
                         </div>
                     </div>
 					<div class="form-group">
 						<label for="cc-payment" class="control-label mb-1" disabled="">Nome:</label>
-						<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.name }}" disabled="" class="form-control">
+						<input type="text" placeholder="{{ authoritie.name }}" disabled="" class="form-control">
                     </div>
                     <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="cc-payment" class="control-label mb-1" disabled="">Data de nascimento:</label>
-                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.birth }}" disabled="" class="form-control">
+                        {% if authoritie.birth %}
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Nascimento:</label>
+                                    <input type="text" placeholder="{{ authoritie.birth }}" disabled="" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-8">
-                            <div class="form-group">
-                                <label for="cc-payment" class="control-label mb-1" disabled="">Cargo:</label>
-                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.position }}" disabled="" class="form-control">
+                        {% else %}
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Nascimento:</label>
+                                    <input type="text" placeholder="" disabled="" class="form-control">
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
+                        {% if authoritie.email %}
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Email:</label>
+                                    <input type="text" placeholder="{{ authoritie.email }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Email:</label>
+                                    <input type="text" placeholder="" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if authoritie.phone_number %}
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Telefone:</label>
+                                    <input type="text" placeholder="{{ authoritie.phone_number }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Telefone:</label>
+                                    <input type="text" placeholder="" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
+                    <hr>
                     <div class="row">
-                        <div class="col-8">
-                            <div class="form-group">
-                                <label for="cc-payment" class="control-label mb-1" disabled="">Instituição:</label>
-                                <input type="text" id="disabled-input" name="disabled-input" placeholder="{{ authoritie.institution }}" disabled="" class="form-control">
+                        {% if authoritie.position %}
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Cargo:</label>
+                                    <input type="text" placeholder="{{ authoritie.position }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Tratamento:</label>
+                                    <input type="text" placeholder="{{ authoritie.position.handling }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Cargo:</label>
+                                    <input type="text" placeholder="" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% if authoritie.institution %}
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Instituição:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Email:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution.email }}" disabled="" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Telefone:</label>
+                                    <input id="phone-number" type="text" placeholder="{{ authoritie.institution.phone_number }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Endereço:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution.street }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Número:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution.number }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Bairro:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution.neighborhood }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Cidade:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution.city }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Estado:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution.state }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">CEP:</label>
+                                    <input type="text" placeholder="{{ authoritie.institution.cep }}" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1" disabled="">Instituição:</label>
+                                    <input type="text" placeholder="" disabled="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
 				</div>
 			</div>
 		</div>

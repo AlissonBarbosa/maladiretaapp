@@ -26,7 +26,7 @@ class PositionListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
         if filter_value:
-            context = Position.objects.filter(position = filter_value)
+            context = Position.objects.search(filter_value)
         else:
             context = Position.objects.all()
         return context

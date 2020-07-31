@@ -3,32 +3,35 @@
 {% block content %}
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-8">
+		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-header">Cargo</div>
 				<div class="card-body">
-					<div class="form-group">
-						<label for="cc-payment" class="control-label mb-1" disabled="">Nome:</label>
-						<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.position }}" disabled="" class="form-control">
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label for="cc-payment" class="control-label mb-1" disabled="">Nome:</label>
+								<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.position }}" disabled="" class="form-control">
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="form-group">
+								<label for="cc-payment" class="control-label mb-1">Tratamento:</label>
+								<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.handling }}" disabled="" class="form-control">
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="cc-payment" class="control-label mb-1">Tratamento:</label>
-						<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.handling }}" disabled="" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="cc-payment" class="control-label mb-1">Abreviação:</label>
-						<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.abbreviation }}" disabled="" class="form-control">
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label for="cc-payment" class="control-label mb-1">Abreviação:</label>
+								<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.abbreviation }}" disabled="" class="form-control">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 {% endblock %} 
