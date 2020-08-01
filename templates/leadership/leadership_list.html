@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             <!-- DATA TABLE -->
-            <h3 class="title-3 m-b-30">Instituições</h3>
+            <h3 class="title-3 m-b-30">Lideranças</h3>
             <div class="table-data__tool">
                 <div class="table-data__tool-left">
                     <form method="get">
@@ -22,7 +22,7 @@
                     </form>
                 </div>
                 <div class="table-data__tool-right">
-                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'institutions:cadastrar' %}'">
+                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'leadership:cadastrar' %}'">
                         <i class="zmdi zmdi-plus"></i>Criar</button>
                 </div>
                 
@@ -32,28 +32,28 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>
-                            <th>Telefone</th>
+                            <th>Apelido</th>
+                            <th>Email</th>
+                            <th>Cargo</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for institution in object_list %}
+                        {% for leadership in object_list %}
                             <tr>
-                                <td>{{ institution.name }}</td>
-                                <td>{{ institution.city }}</td>
-                                <td>{{ institution.state }}</td>
-                                <td>{{ institution.phone_number }}</td>
+                                <td>{{ leadership.name }}</td>
+                                <td>{{ leadership.nickname }}</td>
+                                <td>{{ leadership.email }}</td>
+                                <td>{{ leadership.position }}</td>
                                 <td>
                                     <div class="table-data-feature">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" onclick="window.location.href='{% url 'institutions:instituicao' institution.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" onclick="window.location.href='{% url 'leaderships:lideranca' leadership.pk %}'">
                                             <i class="zmdi zmdi-file-text"></i>
                                         </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'institutions:editar' institution.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'leaderships:editar' leadership.pk %}'">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'institutions:excluir' institution.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'leaderships:excluir' leadership.pk %}'">
                                             <i class="zmdi zmdi-delete"></i>
                                         </button>
                                     </div>
