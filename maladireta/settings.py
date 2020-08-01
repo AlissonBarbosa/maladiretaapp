@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os, environ, django_heroku, dj_database_url
+import os, django_heroku, dj_database_url
 from django.contrib.messages import constants as messages
 from django.utils.translation import gettext_lazy as _
 
@@ -27,10 +27,6 @@ MESSAGE_TAGS = {
         messages.ERROR: 'alert-danger',
  }
 
-root = environ.Path(__file__) - 3  # get root of the project
-env = environ.Env()
-environ.Env.read_env()
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -40,12 +36,12 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = env.str("DJANGO_ALLOWED_HOSTS").split()
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split()
 
 
 # Application definition
