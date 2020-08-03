@@ -51,7 +51,7 @@ class LeadershipUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('leadership:liderancas')
 
     def form_valid(self,form):
-        super(LeadershipCreateView,self).form_valid(form)
+        super(LeadershipUpdateView,self).form_valid(form)
         messages.success(self.request, 'Liderança atualizada com sucesso!')
         return HttpResponseRedirect(self.get_success_url())
         

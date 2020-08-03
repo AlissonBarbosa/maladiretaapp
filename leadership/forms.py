@@ -41,6 +41,7 @@ class LeadershipForm(forms.ModelForm):
             'birth': forms.DateInput(attrs={'class':"form-control cc-name valid", 'type':'text', 'autocomplete': 'off', 'placeholder': 'dd/mm/aaaa', 'data-mask':"00/00/0000"}),
             'nickname': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'note': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'position': forms.Select(attrs={'class':"form-control cc-name valid"})
         }
         error_messages = {

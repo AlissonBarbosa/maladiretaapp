@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+{% include 'messages/error.html' %}
+{% endif %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">Liderança</div>
+				<div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Nome:</label>
+                                <input type="text" placeholder="{{ leadership.name }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Apelido:</label>
+                                <input type="text" placeholder="{{ leadership.nickname }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Aniversário</label>
+                                <input type="text" placeholder="{{ leadership.birth }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">CPF:</label>
+                                <input type="text" placeholder="{{ leadership.cpf }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">RG</label>
+                                <input type="text" placeholder="{{ leadership.rg }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Telefone:</label>
+                                <input type="text" placeholder="{{ leadership.phone_number }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Celular:</label>
+                                <input type="text" placeholder="{{ leadership.cellphone }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Residencial:</label>
+                                <input type="text" placeholder="{{ leadership.phone_home }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Email:</label>
+                                <input type="text" placeholder="{{ leadership.email }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Rua:</label>
+                                <input type="text" placeholder="{{ leadership.street }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Número:</label>
+                                <input type="text" placeholder="{{ leadership.number }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Complemento:</label>
+                                <input type="text" placeholder="{{ leadership.complement }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Bairro:</label>
+                                <input type="text" placeholder="{{ leadership.neighborhood }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Cidade:</label>
+                                <input type="text" placeholder="{{ leadership.city }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Estado:</label>
+                                <input type="text" placeholder="{{ leadership.state }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="control-label mb-1">CEP:</label>
+                                <input type="text" placeholder="{{ leadership.cep }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Cargo:</label>
+                                <input type="text" placeholder="{{ leadership.position }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label class="control-label mb-1">Observação:</label>
+                                <textarea type="text" placeholder="{{ leadership.note }}" disabled="" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
