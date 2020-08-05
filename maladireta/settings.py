@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'authorities',
     'leadership',
     'parties',
+    'candidates',
 ]
 
 MIDDLEWARE = [

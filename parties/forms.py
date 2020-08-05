@@ -1,7 +1,12 @@
 from django import forms
 from .models import Party
+from leadership.models import Leadership
 
 class PartyForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PartyForm, self).__init__(*args, **kwargs)
+        self.fields['leadership'].queryset = Leadership.objects.filter(position__position="Presidente de Partido")
+
     class Meta:
         model = Party
         fields = '__all__'

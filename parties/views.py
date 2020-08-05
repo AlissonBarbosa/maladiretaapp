@@ -44,13 +44,13 @@ class PartyListView(LoginRequiredMixin, ListView):
             context = Party.objects.all()
         return context
 
-class PartyUpdateView(LoginRequiredMixin, ListView):
+class PartyUpdateView(LoginRequiredMixin, UpdateView):
     model = Party
     form_class = PartyForm
     template_name = 'parties/party_update_form.html'
     success_url = reverse_lazy('parties:partidos')
 
     def form_valid(self, form):
-        super(PartyCreateView, self).form_valid(form)
+        super(PartyUpdateView, self).form_valid(form)
         messages.success(self.request, 'Partido atualizado com sucesso!')
         return HttpResponseRedirect(self.get_success_url())

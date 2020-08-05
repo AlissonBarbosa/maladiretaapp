@@ -20,7 +20,7 @@ class LeadershipForm(forms.ModelForm):
             'rg': 'RG',
             'cpf': 'CPF',
             'birth': 'Nascimento',
-            'nickname': 'Apelido',
+            'nickname': 'Pseudonimo',
             'note': 'Observação',
             'position': 'Cargo'
         }

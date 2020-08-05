@@ -25,4 +25,5 @@ urlpatterns = [
     path('autoridades/', include('authorities.urls')),
     path('liderancas/', include('leadership.urls')),
     path('partidos/', include('parties.urls')),
+    path('candidatos/', include('candidates.urls')),
 ]

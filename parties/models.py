@@ -16,7 +16,7 @@ class Party(models.Model):
     initials = models.CharField(max_length=25)
     number = models.IntegerField()
     union = models.CharField(max_length=350, blank=True, null=True)
-    presidente = models.ForeignKey('leadership.Leadership', on_delete=models.CASCADE)
+    leadership = models.ForeignKey('leadership.Leadership', on_delete=models.CASCADE)
 
     objects = PartyManager()
 
