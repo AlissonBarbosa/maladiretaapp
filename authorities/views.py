@@ -34,7 +34,7 @@ class AuthoritieDeleteView(LoginRequiredMixin, DeleteView):
     
 class AuthoritieListView(LoginRequiredMixin, ListView):
     model = Authoritie
-    paginate_by = 10
+    paginate_by = 25
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
