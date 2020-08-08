@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+{% include 'messages/message.html' %}
+{% endif %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- DATA TABLE -->
+            <h3 class="title-3 m-b-30">Clientes</h3>
+            <div class="table-data__tool">
+                <div class="table-data__tool-left">
+                    <form method="get">
+                        <div class="rs-select2--light rs-select2--lg">
+                            <input type="text" id="filter" name="filter" class="form-control">
+                        </div>
+                        <button class="au-btn-filter">
+                            <i class="zmdi zmdi-search"></i>Buscar</button>
+                    </form>
+                </div>
+                <div class="table-data__tool-right">
+                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'customers:cadastrar' %}'">
+                        <i class="zmdi zmdi-plus"></i>Criar</button>
+                </div>
+                
+            </div>
+            <div class="table-responsive table-responsive-data2">
+                <table class="table table-data2">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Pseudonimo</th>
+                            <th>Referência</th>
+                            <th>Lidenrança</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in object_list %}
+                            <tr>
+                                <td>{{ customer.name }}</td>
+                                <td>{{ customer.nickname }}</td>
+                                <td>{{ customer.reference }}</td>
+                                <td>{{ customer.leadership }}</td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" onclick="window.location.href='{% url 'customers:cliente' customer.pk %}'">
+                                            <i class="zmdi zmdi-file-text"></i>
+                                        </button>
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'customers:editar' customer.pk %}'">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'customers:excluir' customer.pk %}'">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="spacer"></tr>
+                        {% empty %}
+                            <tr>
+                                <td>Sem cadastros</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- END DATA TABLE -->
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Anteiror</span></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próximo</a></li>
+                    {% else %}
+                        <li class="disabled page-item"><span class="page-link">Próximo</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+'keydown input[type="text"]': function(event, template) {
+    if ((27 === event.which) || (13 === event.which)) {
+        event.preventDefault();
+        //this should delete value from the input
+        event.currentTarget.value = "";
+    }
+}
+</script>
+{% endblock %} 

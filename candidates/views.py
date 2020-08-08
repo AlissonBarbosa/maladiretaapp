@@ -47,6 +47,7 @@ class CandidateListView(LoginRequiredMixin, ListView):
 class CandidateUpdateView(LoginRequiredMixin, UpdateView):
     model = Candidate
     success_url = reverse_lazy('candidates:candidatos')
+    template_name = 'candidates/candidate_update_form.html'
     form_class = CandidateForm
 
     def form_valid(self, form):
