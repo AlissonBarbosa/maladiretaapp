@@ -27,4 +27,5 @@ urlpatterns = [
     path('partidos/', include('parties.urls')),
     path('candidatos/', include('candidates.urls')),
     path('clientes/', include('customers.urls')),
+    path('funcionarios/', include('employees.urls')),
 ]

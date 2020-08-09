@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+{% include 'messages/error.html' %}
+{% endif %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">Funcionário</div>
+				<div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Nome:</label>
+                                <input type="text" placeholder="{{ employee.name }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Pseudonimo:</label>
+                                <input type="text" placeholder="{{ employee.nickname }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Nascimento:</label>
+                                <input type="text" placeholder="{{ employee.birth }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Função:</label>
+                                <input type="text" placeholder="{{ employee.function }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Telefone:</label>
+                                <input type="text" placeholder="{{ employee.phone_number }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Residencial:</label>
+                                <input type="text" placeholder="{{ employee.phone_home }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Celular:</label>
+                                <input type="text" placeholder="{{ employee.cellphone }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Email:</label>
+                                <input type="text" placeholder="{{ employee.email }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Rua:</label>
+                                    <input type="text" placeholder="{{ employee.street }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Número:</label>
+                                    <input type="text" placeholder="{{ employee.number }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Complemento:</label>
+                                    <input type="text" placeholder="{{ employee.complement }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Bairro:</label>
+                                    <input type="text" placeholder="{{ employee.neighborhood }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">CEP:</label>
+                                    <input type="text" placeholder="{{ employee.cep }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Estado:</label>
+                                    <input type="text" placeholder="{{ employee.state }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Observação:</label>
+                                <input type="text" placeholder="{{ employee.note }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

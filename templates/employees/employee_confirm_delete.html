@@ -5,12 +5,12 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="card">
-				<div class="card-header">Excluir Cliente</div>
+				<div class="card-header">Excluir Funcionário</div>
 				<div class="card-body">
 					<form action="" method="post" novalidate="novalidate">
 						{% csrf_token %}
                         <div class="form-group">
-                            <p>Deseja excluir o cliente "{{ object }}"?</p>
+                            <p>Deseja excluir o funcionário "{{ object }}"?</p>
                         </div>
                         <button type="submit" class="btn btn-danger btn-sm">
                             <i class="fa fa-ban"></i> Excluir

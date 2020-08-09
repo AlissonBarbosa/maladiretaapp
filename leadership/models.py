@@ -29,7 +29,6 @@ class Leadership(models.Model):
     nickname = models.CharField(max_length=30, blank=True, null=True)
     note = models.TextField(blank=True, null=True)
     position = models.ForeignKey('positions.Position', on_delete=models.CASCADE, blank=True, null=True)
-    #party
 
     objects = LeadershipManager()
 
