@@ -10,19 +10,19 @@
     <div class="row">
         <div class="col-md-12">
             <!-- DATA TABLE -->
-            <h3 class="title-3 m-b-30">Cargos</h3>
+            <h3 class="title-3 m-b-30">Pleitos</h3>
             <div class="table-data__tool">
                 <div class="table-data__tool-left">
                     <form method="get">
                         <div class="rs-select2--light rs-select2--lg">
-                            <input type="text" id="filter" name="filter" placeholder="" class="form-control">
+                            <input type="text" id="filter" name="filter" class="form-control">
                         </div>
                         <button class="au-btn-filter">
                             <i class="zmdi zmdi-search"></i>Buscar</button>
                     </form>
                 </div>
                 <div class="table-data__tool-right">
-                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'positions:cadastrar' %}'">
+                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'solicitations:cadastrar' %}'">
                         <i class="zmdi zmdi-plus"></i>Criar</button>
                 </div>
                 
@@ -31,27 +31,29 @@
                 <table class="table table-data2">
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Tratamento</th>
-                            <th>Abreviatura</th>
+                            <th>Cliente</th>
+                            <th>Descrição</th>
+                            <th>Indicação</th>
+                            <th>Situação</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for position in object_list %}
+                        {% for solicitation in object_list %}
                             <tr>
-                                <td>{{ position.position }}</td>
-                                <td>{{position.handling}}</td>
-                                <td>{{position.abbreviation}}</td>
+                                <td>{{ solicitation.customer }}</td>
+                                <td>{{ solicitation.description }}</td>
+                                <td>{{ solicitation.indication }}</td>
+                                <td>{{ solicitation.situation }}</td>
                                 <td>
                                     <div class="table-data-feature">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" onclick="window.location.href='{% url 'positions:cargo' position.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" onclick="window.location.href='{% url 'solicitations:pleito' solicitation.pk %}'">
                                             <i class="zmdi zmdi-file-text"></i>
                                         </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'positions:editar' position.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'solicitations:editar' solicitation.pk %}'">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'positions:excluir' position.pk %}'">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'solicitations:excluir' solicitation.pk %}'">
                                             <i class="zmdi zmdi-delete"></i>
                                         </button>
                                     </div>
@@ -61,6 +63,7 @@
                         {% empty %}
                             <tr>
                                 <td>Sem cadastros</td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

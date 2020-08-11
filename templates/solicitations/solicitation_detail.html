@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+{% include 'messages/error.html' %}
+{% endif %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">Pleito</div>
+				<div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Criado em:</label>
+                                <input type="text" placeholder="{{ solicitation.created }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Cliente:</label>
+                                <input type="text" placeholder="{{ solicitation.customer }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Descrição:</label>
+                                <textarea type="text" placeholder="{{ solicitation.description }}" disabled="" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Indicação:</label>
+                                <input type="text" placeholder="{{ solicitation.indication }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Situação:</label>
+                                <input type="text" placeholder="{{ solicitation.situation }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Valor:</label>
+                                <input type="text" placeholder="{{ solicitation.value }}" disabled="" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Observação:</label>
+                                <textarea type="text" placeholder="{{ solicitation.note }}" disabled="" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

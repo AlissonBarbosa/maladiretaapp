@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'candidates',
     'customers',
     'employees',
+    'solicitations',
 ]
 
 MIDDLEWARE = [
