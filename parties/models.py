@@ -5,10 +5,10 @@ from django.urls import reverse
 class PartyManager(models.Manager):
     def search(self, query):
         return self.get_queryset().filter(models.Q(leadership__name__icontains=query) |
-            models.Q(name_icontains=query) |
-            models.Q(initials_icontains=query) |
-            models.Q(number_iexact=query) |
-            models.Q(union_icontains=query))
+            models.Q(name__icontains=query) |
+            models.Q(initials__icontains=query) |
+            models.Q(number__iexact=query) |
+            models.Q(union__icontains=query))
         
 
 class Party(models.Model):

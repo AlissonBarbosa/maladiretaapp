@@ -17,15 +17,16 @@
                         <div class="rs-select2--light rs-select2--lg">
                             <input type="text" id="filter" name="filter" class="form-control">
                         </div>
-                        <button class="au-btn-filter">
+                        <button id="search" class="au-btn-filter">
                             <i class="zmdi zmdi-search"></i>Buscar</button>
                     </form>
                 </div>
                 <div class="table-data__tool-right">
                     <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'customers:cadastrar' %}'">
                         <i class="zmdi zmdi-plus"></i>Criar</button>
+                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" id="dwn-btn">
+                        <i class="zmdi zmdi-archive"></i>Baixar</button>
                 </div>
-                
             </div>
             <div class="table-responsive table-responsive-data2">
                 <table class="table table-data2">
@@ -34,7 +35,7 @@
                             <th>Nome</th>
                             <th>Pseudonimo</th>
                             <th>Referência</th>
-                            <th>Lidenrança</th>
+                            <th>Liderança</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -47,15 +48,15 @@
                                 <td>{{ customer.leadership }}</td>
                                 <td>
                                     <div class="table-data-feature">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" onclick="window.location.href='{% url 'customers:cliente' customer.pk %}'">
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Detalhes" href="{% url 'customers:cliente' customer.pk %}">
                                             <i class="zmdi zmdi-file-text"></i>
-                                        </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editar" onclick="window.location.href='{% url 'customers:editar' customer.pk %}'">
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Editar" href="{% url 'customers:editar' customer.pk %}">
                                             <i class="zmdi zmdi-edit"></i>
-                                        </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Excluir" onclick="window.location.href='{% url 'customers:excluir' customer.pk %}'">
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Excluir" href="{% url 'customers:excluir' customer.pk %}">
                                             <i class="zmdi zmdi-delete"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -98,7 +99,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
 'keydown input[type="text"]': function(event, template) {
     if ((27 === event.which) || (13 === event.which)) {
         event.preventDefault();
@@ -106,5 +107,40 @@
         event.currentTarget.value = "";
     }
 }
+</script> -->
+<script>
+    function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+    // Start file download.
+    document.getElementById("dwn-btn").addEventListener("click", function(){
+        var text = "";
+
+        {% for customer in object_list %}
+            text+="{{ customer.name }}" +
+                "#Sr(a)" +
+                "#" + "{{ customer.name }}" +
+                "#" + "{{ customer.street }}" +
+                "#" + "{{ customer.neighborhood }}" +
+                "#" + "{{ customer.number }}" +
+                "#" + "{{ customer.city }}" +
+                "#" + "{{ customer.state }}" +
+                "#" + "{{ customer.cep }}" +
+                "#" + "Brasil#######\n"
+        {% endfor %}
+
+        var filename = "telegrama.txt";
+        
+        download(filename, text);
+    }, false);
 </script>
 {% endblock %} 

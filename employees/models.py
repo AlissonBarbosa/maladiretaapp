@@ -3,10 +3,10 @@ from django.urls import reverse
 
 class EmployeeManager(models.Manager):
     def search(self, query):
-        return self.get_queryset().filter(models.Q(note_icontains=query) |
-            models.Q(name_icontains=query) |
-            models.Q(nickname_iexact=query) |
-            models.Q(function_icontains=query))
+        return self.get_queryset().filter(models.Q(note__icontains=query) |
+            models.Q(name__icontains=query) |
+            models.Q(nickname__iexact=query) |
+            models.Q(function__icontains=query))
 
 class Employee(models.Model):
     name = models.CharField(max_length=250)

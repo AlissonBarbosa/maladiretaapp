@@ -4,10 +4,10 @@ from django.urls import reverse
 class CustomerManager(models.Manager):
     def search(self, query):
         return self.get_queryset().filter(models.Q(leadership__name__icontains=query) |
-            models.Q(name_icontains=query) |
-            models.Q(nickname_iexact=query) |
-            models.Q(profession_icontains=query) |
-            models.Q(reference_icontains=query))
+            models.Q(name__icontains=query) |
+            models.Q(nickname__iexact=query) |
+            models.Q(profession__icontains=query) |
+            models.Q(reference__icontains=query))
 
 class Customer(models.Model):
     name = models.CharField(max_length=250)
