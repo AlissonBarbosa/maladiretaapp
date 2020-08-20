@@ -32,6 +32,7 @@ class Customer(models.Model):
     zone = models.CharField(max_length=30, blank=True, null=True)
     section = models.CharField(max_length=30, blank=True, null=True)
     profession = models.CharField(max_length=80, blank=True, null=True)
+    recurrence = models.CharField(max_length=60, blank=True, null=True)
 
     objects = CustomerManager()
 

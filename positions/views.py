@@ -21,7 +21,7 @@ class PositionCreateView(LoginRequiredMixin, CreateView):
 
 class PositionListView(LoginRequiredMixin, ListView):
     model = Position
-    paginate_by = 10
+    paginate_by = 25
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')

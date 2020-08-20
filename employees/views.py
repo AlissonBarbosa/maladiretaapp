@@ -6,10 +6,32 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from .models import Employee
 from .forms import EmployeeForm
+
+def export_telegrama(request):
+        query = request.session.get("query_filter")
+        if query:
+            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(employee.name,
+                        employee.name, employee.street,
+                        employee.neighborhood, employee.number,
+                        employee.city, employee.state,
+                        employee.cep.replace('.','').replace('-',''))
+                        for employee in Employee.objects.search(query)]
+        else:
+            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(employee.name,
+                        employee.name, employee.street,
+                        employee.neighborhood, employee.number,
+                        employee.city, employee.state,
+                        employee.cep.replace('.','').replace('-',''))
+                        for employee in Employee.objects.all() ]
+
+        filename = "telegrama_funcionarios.txt"
+        response = HttpResponse(content, content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename={0}'.format(filename)
+        return response
 
 class EmployeeCreateView(LoginRequiredMixin, CreateView):
     model = Employee
@@ -40,8 +62,10 @@ class EmployeeListView(LoginRequiredMixin, ListView):
         filter_value = self.request.GET.get('filter')
         if filter_value:
             context = Employee.objects.search(filter_value)
+            self.request.session['query_filter'] = filter_value
         else:
             context = Employee.objects.all()
+            self.request.session['query_filter'] = None
         return context
 
 class EmployeeUpdateView(LoginRequiredMixin, UpdateView):

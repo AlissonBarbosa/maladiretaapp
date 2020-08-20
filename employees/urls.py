@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import EmployeeCreateView, EmployeeDetailView, EmployeeDeleteView, EmployeeListView, EmployeeUpdateView
+from .views import EmployeeCreateView, EmployeeDetailView, EmployeeDeleteView, EmployeeListView, EmployeeUpdateView, export_telegrama
 
 app_name = 'employees'
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>', EmployeeDetailView.as_view(), name='funcionario'),
     path('excluir/<int:pk>', EmployeeDeleteView.as_view(), name='excluir'),
     path('editar/<int:pk>', EmployeeUpdateView.as_view(), name='editar'),
+    path('download/', export_telegrama, name='download'),
 ]

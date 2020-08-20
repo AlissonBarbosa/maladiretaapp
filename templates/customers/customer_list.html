@@ -24,7 +24,7 @@
                 <div class="table-data__tool-right">
                     <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'customers:cadastrar' %}'">
                         <i class="zmdi zmdi-plus"></i>Criar</button>
-                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" id="dwn-btn">
+                    <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'customers:download' %}'">
                         <i class="zmdi zmdi-archive"></i>Baixar</button>
                 </div>
             </div>
@@ -99,7 +99,7 @@
     </div>
 </div>
 
-<!-- <script>
+<script>
 'keydown input[type="text"]': function(event, template) {
     if ((27 === event.which) || (13 === event.which)) {
         event.preventDefault();
@@ -107,40 +107,5 @@
         event.currentTarget.value = "";
     }
 }
-</script> -->
-<script>
-    function download(filename, text) {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-
-        element.style.display = 'none';
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
-    }
-    // Start file download.
-    document.getElementById("dwn-btn").addEventListener("click", function(){
-        var text = "";
-
-        {% for customer in object_list %}
-            text+="{{ customer.name }}" +
-                "#Sr(a)" +
-                "#" + "{{ customer.name }}" +
-                "#" + "{{ customer.street }}" +
-                "#" + "{{ customer.neighborhood }}" +
-                "#" + "{{ customer.number }}" +
-                "#" + "{{ customer.city }}" +
-                "#" + "{{ customer.state }}" +
-                "#" + "{{ customer.cep }}" +
-                "#" + "Brasil#######\n"
-        {% endfor %}
-
-        var filename = "telegrama.txt";
-        
-        download(filename, text);
-    }, false);
 </script>
 {% endblock %} 
