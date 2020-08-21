@@ -37,7 +37,7 @@
 </head>
 
 <body class="animsition">
-     <div class="page-wrapper">
+    <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar2">
             <div class="logo">
@@ -46,16 +46,18 @@
                 </a>
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
-                {% if user.is_authenticated %}
-                    <div class="account2">
-                        <h4 class="name">{{ user.username }}</h4>
-                        <a href="{% url 'usuarios:logout' %}">Sair</a>
-                    </div>
-                {% else %}
-                    <div class="account2">
-                        <a class="name" href="{% url 'usuarios:login' %}">Entrar</a>
-                    </div>
-                {% endif %}
+                <div class="account2">
+                    {% if user.is_authenticated %}
+                        <div class="account2">
+                            <h4 class="name">{{ user.username }}</h4>
+                            <a href="{% url 'usuarios:logout' %}">Sair</a>
+                        </div>
+                    {% else %}
+                        <div class="account2">
+                            <a class="name" href="{% url 'usuarios:login' %}">Entrar</a>
+                        </div>
+                    {% endif %}
+                </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
@@ -126,19 +128,19 @@
         <!-- END MENU SIDEBAR-->
 
         <!-- PAGE CONTAINER-->
-        <div class="page-container">
+        <div class="page-container2">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop2">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="header-wrap2 d-lg-none">
+                        <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
                                 <a href="{% url 'core:inicio' %}">
                                     <img src="{% static 'images/icon/logo.png' %}" alt="Mala Direta" />
                                 </a>
                             </div>
                             <div class="header-button2">
-                                <div class="header-button-item mr-0 js-sidebar-btn">
+                                <div class="header-button-item mr-0 js-sidebar-btn d-lg-none">
                                     <i class="zmdi zmdi-menu"></i>
                                 </div>
                             </div>
@@ -153,16 +155,18 @@
                     </a>
                 </div>
                 <div class="menu-sidebar2__content js-scrollbar2">
-                    {% if user.is_authenticated %}
+                    <div class="account2">
+                        {% if user.is_authenticated %}
                         <div class="account2">
                             <h4 class="name">{{ user.username }}</h4>
                             <a href="{% url 'usuarios:logout' %}">Sair</a>
                         </div>
-                    {% else %}
-                        <div class="account2">
-                            <a class="name" href="{% url 'usuarios:login' %}">Entrar</a>
-                        </div>
-                    {% endif %}
+                        {% else %}
+                            <div class="account2">
+                                <a class="name" href="{% url 'usuarios:login' %}">Entrar</a>
+                            </div>
+                        {% endif %}
+                    </div>
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
                             <li>
@@ -200,7 +204,7 @@
                                 </ul>
                             </li>
                             <li class="has-sub">
-                                <a class="js-arrow" href="{% url 'solicitations:pleitos' %}">
+                                <a href="{% url 'solicitations:pleitos' %}">
                                     <i class="fas fa-copy"></i>Pleitos</a>
                             </li>
                             <li class="has-sub">
@@ -237,7 +241,6 @@
                     {% endblock %}
                 </div>
             </div>
-            <!-- STATISTIC-->
 
             <section>
                 <div class="container-fluid">

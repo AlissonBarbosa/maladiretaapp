@@ -1,6 +1,8 @@
 from employees.models import Employee
 from positions.models import Position
+from institutions.models import Institution
 from datetime import datetime
+import csv
 
 def to_datetime(date):
         date_list = date.split("/")
@@ -62,3 +64,31 @@ def cargo():
             position.save()
             count = count + 1
     print("{} cargos adicionados".format(count))
+
+def instituicao():
+    with open('/home/alisson/Workspace/maladireta/database/instituicoes.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                print(f'Column names are {", ".join(row)}')
+                line_count += 1
+            else:
+                telefone = None
+                if row[2]:
+                    telefone = ''.join((filter(lambda x: x in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '(', ')', '-', '/'], row[2])))
+                institution = Institution()
+                institution.name = row[1]
+                institution.phone_number = telefone
+                institution.street = row[3]
+                institution.city = row[4]
+                institution.number = row[5]
+                institution.neighborhood = row[7]
+                institution.cep = row[8]
+                institution.state = row[9]
+                institution.note = row[11]
+                institution.save()
+                #print(f'\tNome: {row[1]}\nTelefones {telefone}\nEndereço: {row[3]}\nCidade: {row[4]}\nNumero: {row[5]}\nComplemento: {row[6]}\nBairro: {row[7]}\nCEP: {row[8]}\nUF: {row[9]}\nOBS: {row[11]}')
+                line_count += 1
+    print(f'{line_count} instituições adicionadas.')
+        

@@ -14,7 +14,8 @@ class InstitutionForm(forms.ModelForm):
             'complement': 'Complemento',
             'cep': 'CEP',
             'state': 'Estado',
-            'neighborhood': 'Bairro'
+            'neighborhood': 'Bairro',
+            'note': 'Observação'
         }
         widgets = {
             'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
@@ -26,6 +27,7 @@ class InstitutionForm(forms.ModelForm):
             'cep': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'data-mask':"00.000-000"}),
             'state': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'note': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'neighborhood': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
         }
         error_messages = {
