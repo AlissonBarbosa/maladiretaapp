@@ -15,7 +15,7 @@
                 <div class="table-data__tool-left">
                     <form method="get">
                         <div class="rs-select2--light rs-select2--lg">
-                            <input type="text" id="filter" name="filter" class="form-control">
+                            <input type="text" title="Para aniversario:&#013;Dia: 01&#013;ou Mes: 8" id="filter" name="filter" class="form-control">
                         </div>
                         <button class="au-btn-filter">
                             <i class="zmdi zmdi-search"></i>Buscar</button>
@@ -24,6 +24,8 @@
                 <div class="table-data__tool-right">
                     <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'authorities:cadastrar' %}'">
                         <i class="zmdi zmdi-plus"></i>Criar</button>
+                        <button class="au-btn au-btn-icon au-btn-load au-btn--small" onclick="window.location.href='{% url 'authorities:download' %}'">
+                            <i class="zmdi zmdi-archive"></i>Baixar</button>
                 </div>
                 
             </div>

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os, django_heroku, dj_database_url
+import os
 from django.contrib.messages import constants as messages
 from django.utils.translation import gettext_lazy as _
 
@@ -39,7 +39,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
@@ -67,7 +67,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django_session_timeout.middleware.SessionTimeoutMiddleware',
@@ -104,9 +103,20 @@ WSGI_APPLICATION = 'maladireta.wsgi.application'
 
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': dj_database_url.config(conn_max_age=600, ssl_require=True)
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': dj_database_url.config(conn_max_age=600, ssl_require=True)
+        'ENGINE': os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        'NAME': os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        'USER': os.environ.get("SQL_USER", "user"),
+        'PASSWORD': os.environ.get("SQL_PASSWORD", "password"),
+        'HOST': os.environ.get("SQL_HOST", "localhost"),
+        'PORT': os.environ.get("SQL_PORT", "5432"),
     }
 }
 
@@ -148,15 +158,12 @@ SESSION_TIMEOUT_REDIRECT = 'usuarios:login'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# Activate Django-Heroku.
-django_heroku.settings(locals())
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/static/'
+STATIC_ROOT = '/vol/web/static'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [

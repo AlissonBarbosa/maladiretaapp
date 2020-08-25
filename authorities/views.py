@@ -6,10 +6,32 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from .models import Authoritie
 from .forms import AuthoritieForm
+
+def export_telegrama(request):
+        query = request.session.get("query_filter")
+        if query:
+            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(authoritie.name,
+                        authoritie.name, authoritie.institution.street,
+                        authoritie.institution.neighborhood, authoritie.institution.number,
+                        authoritie.institution.city, authoritie.institution.state,
+                        authoritie.institution.cep.replace('.','').replace('-',''))
+                        for authoritie in Authoritie.objects.search(query)]
+        else:
+            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(authoritie.name,
+                        authoritie.name, authoritie.institution.street,
+                        authoritie.institution.neighborhood, authoritie.institution.number,
+                        authoritie.institution.city, authoritie.institution.state,
+                        authoritie.institution.cep.replace('.','').replace('-',''))
+                        for authoritie in Authoritie.objects.all() ]
+
+        filename = "telegrama_autoridades.txt"
+        response = HttpResponse(content, content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename={0}'.format(filename)
+        return response
 
 class AuthoritieCreateView(LoginRequiredMixin, CreateView):
     model = Authoritie
@@ -34,14 +56,16 @@ class AuthoritieDeleteView(LoginRequiredMixin, DeleteView):
     
 class AuthoritieListView(LoginRequiredMixin, ListView):
     model = Authoritie
-    paginate_by = 25
+    paginate_by = 50
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
         if filter_value:
             context = Authoritie.objects.search(filter_value)
+            self.request.session['query_filter'] = filter_value
         else:
             context = Authoritie.objects.all()
+            self.request.session['query_filter'] = filter_value
         return context
 
 class AuthoritieUpdateView(LoginRequiredMixin, UpdateView):

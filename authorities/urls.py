@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import AuthoritieCreateView, AuthoritieDeleteView, AuthoritieDetailView, AuthoritieListView, AuthoritieUpdateView
+from .views import AuthoritieCreateView, AuthoritieDeleteView, AuthoritieDetailView, AuthoritieListView, AuthoritieUpdateView, export_telegrama
 
 app_name = 'authorities'
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:pk>', AuthoritieDetailView.as_view(), name='autoridade'),
     path('excluir/<int:pk>', AuthoritieDeleteView.as_view(), name='excluir'),
     path('editar/<int:pk>', AuthoritieUpdateView.as_view(), name='editar'),
+    path('download/', export_telegrama, name='download'),
 ]

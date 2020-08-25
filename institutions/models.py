@@ -8,7 +8,7 @@ class InstitutionManager(models.Manager):
 
 class Institution(models.Model):
     name = models.CharField(max_length=250, unique=True)
-    phone_number = models.CharField(max_length=50, blank=True, null=True)
+    phone_number = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=80, blank=True, null=True)
     street = models.CharField(max_length=200, blank=True, null=True)
     number = models.CharField(max_length=10, blank=True, null=True)
