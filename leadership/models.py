@@ -2,7 +2,7 @@ from django.db import models
 
 class LeadershipManager(models.Manager):
     def search(self, query):
-        return self.get_queryset(models.Q(name__icontais=query) | 
+        return self.get_queryset().filter(models.Q(name__icontains=query) | 
             models.Q(nickname__icontains=query) | 
             models.Q(note__icontains=query) | 
             models.Q(rg__iexact=query) | 
@@ -17,7 +17,7 @@ class Leadership(models.Model):
     city = models.CharField(max_length=80, blank=True, null=True)
     street = models.CharField(max_length=200, blank=True, null=True)
     number = models.CharField(max_length=10, blank=True, null=True)
-    complement = models.CharField(max_length=30, blank=True, null=True)
+    complement = models.CharField(max_length=150, blank=True, null=True)
     cep = models.CharField(max_length=15, blank=True, null=True)
     state = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)

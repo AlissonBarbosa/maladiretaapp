@@ -2,6 +2,8 @@ from employees.models import Employee
 from positions.models import Position
 from institutions.models import Institution
 from authorities.models import Authoritie
+from parties.models import Party
+from leadership.models import Leadership
 from datetime import datetime
 import csv
 
@@ -18,7 +20,7 @@ def to_datetime_inverted(date):
     return datetime.strptime(date_converted, '%Y-%m-%d')
 
 def funcionario():
-    file = open("/home/alisson/Workspace/maladireta/database/funcionarios.csv")
+    file = open("/maladireta/database/funcionarios.csv")
     count = 0
     for line in file.readlines():
         dados = line.split(',')
@@ -57,7 +59,7 @@ def funcionario():
     print("{} funcionários adicionados".format(count))
 
 def cargo():
-    file = open("/home/alisson/Workspace/maladireta/database/cargos.csv")
+    file = open("/maladireta/database/cargos.csv")
     count = 0
     for line in file.readlines():
         dados = line.split(',')
@@ -74,7 +76,7 @@ def cargo():
     print("{} cargos adicionados".format(count))
 
 def instituicao():
-    with open('/home/alisson/Workspace/maladireta/database/instituicoes.csv') as csv_file:
+    with open('/maladireta/database/instituicoes.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         for row in csv_reader:
@@ -103,7 +105,7 @@ def instituicao():
     print(f'{line_count} instituições adicionadas.')
 
 def autoridade():
-    with open('/home/alisson/Workspace/maladireta/database/autoridades.csv') as csv_file:
+    with open('/maladireta/database/autoridades.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         position_count = 0
@@ -162,6 +164,54 @@ def autoridade():
                             authoritie_count += 1
 
     return authoritie_count, institution_count, position_count
+
+def partido():
+    with open('/maladireta/database/partidos.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        party_count = 0
+        leadership_count = 0
+        position = Position.objects.search("Presidente de Partido")[0]
+        print(position)
+        for row in csv_reader:
+            if line_count == 0:
+                print(f'Column names are {", ".join(row)}')
+                line_count += 1
+            else:
+                if not Party.objects.search(row[1]):
+                    print(row[1])
+                    party = Party()
+                    party.initials = row[1]
+                    party.number = row[2]
+                    party.name = row[3]
+                    party.union = row[4]
+
+                    if row[5]:
+                        leadership = Leadership()
+                        leadership.name = row[5]
+                        leadership.street = row[6]
+                        leadership.number = row[7]
+                        leadership.neighborhood = row[8]
+                        leadership.city = row[9]
+                        leadership.state = row[10]
+                        leadership.cep = row[11]
+                        leadership.note = row[12]
+                        leadership.email = row[13]
+                        leadership.complement = row[14]
+                        leadership.position = position
+                        leadership.save()
+                        leadership_count += 1
+                        party.leadership = Leadership.objects.search(leadership.name)[0]
+
+                    party.save()
+                    party_count += 1
+    return party_count, leadership_count
+
+
+                
+                
+
+
                         
 
         

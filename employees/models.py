@@ -25,7 +25,7 @@ class Employee(models.Model):
     city = models.CharField(max_length=80, blank=True, null=True)
     street = models.CharField(max_length=200, blank=True, null=True)
     number = models.CharField(max_length=10, blank=True, null=True)
-    complement = models.CharField(max_length=30, blank=True, null=True)
+    complement = models.CharField(max_length=100, blank=True, null=True)
     cep = models.CharField(max_length=15, blank=True, null=True)
     state = models.CharField(max_length=30, blank=True, null=True)
     neighborhood = models.CharField(max_length=60, blank=True, null=True)

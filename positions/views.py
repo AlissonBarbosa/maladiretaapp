@@ -21,12 +21,13 @@ class PositionCreateView(LoginRequiredMixin, CreateView):
 
 class PositionListView(LoginRequiredMixin, ListView):
     model = Position
-    paginate_by = 25
+    paginate_by = 50
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
         if filter_value:
             context = Position.objects.search(filter_value)
+            self.paginate_by = len(context)
         else:
             context = Position.objects.all()
         return context

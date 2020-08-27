@@ -34,12 +34,20 @@
                             </div>
                         </div>
                         <div class="col-6">
-                                <div class="form-group">
-                                    <label for="cc-payment" class="control-label mb-1">Coligação:</label>
-                                    <input type="text" placeholder="{{ party.union }}" disabled="" class="form-control">
-                                </div>
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Coligação:</label>
+                                <input type="text" placeholder="{{ party.union }}" disabled="" class="form-control">
+                            </div>
                         </div>
                     </div>
+                    <div class="row">
+						<div class="col-6">
+							<div class="form-actions form-group">
+								<button onclick="window.location.href='{% url 'parties:editar' party.pk %}'" class="btn btn-warning btn-md">Editar</button>
+								<button onclick="window.location.href='{% url 'parties:partidos' %}'" class="btn btn-secondary btn-md">Voltar</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
