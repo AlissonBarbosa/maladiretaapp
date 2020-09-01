@@ -20,7 +20,7 @@ class AuthoritieManager(models.Manager):
 
 class Authoritie(models.Model):
     name = models.CharField(max_length=250)
-    updated = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
     birth = models.DateField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)

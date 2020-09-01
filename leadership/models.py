@@ -1,13 +1,23 @@
 from django.db import models
+from django.urls import reverse
+import datetime
 
 class LeadershipManager(models.Manager):
     def search(self, query):
-        return self.get_queryset().filter(models.Q(name__icontains=query) | 
-            models.Q(nickname__icontains=query) | 
-            models.Q(note__icontains=query) | 
-            models.Q(rg__iexact=query) | 
-            models.Q(cpf__iexact=query) |
-            models.Q(position__position__icontains=query))
+        if "Dia:" in query:
+            day = query.split(":")[1]
+            month = datetime.date.today().month
+            return self.get_queryset().filter(models.Q(birth__day=day)).filter(models.Q(birth__month=month))
+        elif "Mes:" in query:
+            month = query.split(":")[1]
+            return self.get_queryset().filter(models.Q(birth__month=month))
+        else:
+            return self.get_queryset().filter(models.Q(name__icontains=query) | 
+                models.Q(nickname__icontains=query) | 
+                models.Q(note__icontains=query) | 
+                models.Q(rg__iexact=query) | 
+                models.Q(cpf__iexact=query) |
+                models.Q(position__position__icontains=query))
 
 class Leadership(models.Model):
     name = models.CharField(max_length=250)

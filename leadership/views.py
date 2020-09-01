@@ -6,10 +6,43 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from .models import Leadership
 from .forms import LeadershipForm
+
+def export_telegrama(request):
+        query = request.session.get("query_filter")
+        if query:
+            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name,
+                        leadership.name, leadership.street,
+                        leadership.neighborhood, leadership.number,
+                        leadership.city, leadership.state,
+                        leadership.cep.replace('.','').replace('-',''))
+                        if not leadership.position.abbreviation else
+                        "{}#{}#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name, leadership.position.abbreviation.replace("\n",''),
+                        leadership.name, leadership.street,
+                        leadership.neighborhood, leadership.number,
+                        leadership.city, leadership.state,
+                        leadership.cep.replace('.','').replace('-','')) for leadership in Leadership.objects.search(query)]
+        else:
+            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name,
+                        leadership.name, leadership.street,
+                        leadership.neighborhood, leadership.number,
+                        leadership.city, leadership.state,
+                        leadership.cep.replace('.','').replace('-',''))
+                        if not leadership.position.abbreviation else
+                        "{}#{}#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name, leadership.position.abbreviation.replace("\n",''),
+                        leadership.name, leadership.street,
+                        leadership.neighborhood, leadership.number,
+                        leadership.city, leadership.state,
+                        leadership.cep.replace('.','').replace('-',''))
+                        for leadership in Leadership.objects.all()]
+
+        filename = "telegrama_lideranças.txt"
+        response = HttpResponse(content, content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename={0}'.format(filename)
+        return response
 
 class LeadershipCreateView(LoginRequiredMixin, CreateView):
     model = Leadership
@@ -34,14 +67,38 @@ class LeadershipDeleteView(LoginRequiredMixin, DeleteView):
 
 class LeadershipListView(LoginRequiredMixin, ListView):
     model = Leadership
-    paginate_by = 25
+    paginate_by = 50
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if not context.get('is_paginated', False):
+            return context
+        
+        paginator = context.get('paginator')
+        num_pages = paginator.num_pages
+        current_page = context.get('page_obj')
+        page_no = current_page.number
+        
+
+        if num_pages <= 11 or page_no <= 6:
+            pages = [x for x in range(1, min(num_pages + 1, 12))]
+        elif page_no > num_pages - 6:
+            pages = [x for x in range(num_pages - 10, num_pages + 1)]
+        else:
+            pages = [x for x in range(page_no - 5, page_no + 6)]
+        
+
+        context.update({'pages': pages, 'previous_page': pages[0], 'next_page': pages[-1]})
+        return context
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
         if filter_value:
             context = Leadership.objects.search(filter_value)
+            self.request.session['query_filter'] = filter_value
         else:
             context = Leadership.objects.all()
+            self.request.session['query_filter'] = None
         return context
 
 class LeadershipUpdateView(LoginRequiredMixin, UpdateView):

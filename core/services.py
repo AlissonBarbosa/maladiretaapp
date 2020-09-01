@@ -4,6 +4,8 @@ from institutions.models import Institution
 from authorities.models import Authoritie
 from parties.models import Party
 from leadership.models import Leadership
+from candidates.models import Candidate
+from customers.models import Customer
 from datetime import datetime
 import csv
 
@@ -14,8 +16,10 @@ def to_datetime(date):
 
 def to_datetime_inverted(date):
     date_list = date.split("/")
-    print(date_list)
-    year = '2020'
+    if int(date_list[2]) < 20:
+        year = "20{}".format(date_list[2])
+    else:
+        year = "19{}".format(date_list[2])
     date_converted = '{}-{}-{}'.format(year, date_list[0], date_list[1])
     return datetime.strptime(date_converted, '%Y-%m-%d')
 
@@ -207,8 +211,77 @@ def partido():
                     party_count += 1
     return party_count, leadership_count
 
+def candidato():
+    with open('/maladireta/database/candidatos.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                print(f'Column names are {", ".join(row)}')
+                line_count += 1
+            else:
+                candidate = Candidate()
+                candidate.name = row[0]
+                candidate.number = row[1]
+                party_query = Party.objects.search(row[2])
+                if party_query:
+                    candidate.party = party_query[0]
+                else:
+                    print(candidate.name)
+                if row[4] == 'DE':
+                    candidate.position = Position.objects.search('Deputado Estadual')[0]
+                elif row[4] == 'DF':
+                    candidate.position = Position.objects.search('Deputado Federal')[0]
+                elif row[4] == 'G':
+                    candidate.position = Position.objects.search('Governador')[0]
+                elif row[4] == 'S':
+                    candidate.position = Position.objects.search('Senador')[0]
+                candidate.save()    
+    return line_count -1
 
+def cliente():
+    with open('/maladireta/database/clientes.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                print(f'{", ".join(row)}')
+                line_count += 1
+            elif line_count == 1:
+                customer = Customer()
+                customer.name = row[0]
+                if row[1]:
+                    customer.birth = to_datetime_inverted(row[1].split(' ')[0])
+                customer.nickname = row[2]
+                customer.reference = row[3]
+                customer.state = row[4]
+                customer.cep = row[5]
+                customer.note = row[11]
+                customer.cpf = row[12]
+                customer.rg = row[13]
+                customer.phone_home = row[14]
+                customer.phone_number = row[15]
+                customer.cellphone = row[16]
+                customer.complement = row[17]
+                customer.street = row[18]
+                customer.leadership = row[20]
+                customer.location_reference = row[21]
+                customer.number = row[26]
+                customer.email = row[27]
+                customer.profession = row[28]
+                customer.neighborhood = row[29]
+                customer.city = row[30]
+                customer.recurrence = row[32]
+                customer.subscription = row[38]
+                customer.zone = row[39]
+                customer.section = row[40]
+                customer.save()
+            else:
+                break
                 
+def exclui_clientes():
+    for customer in Customer.objects.all():
+        customer.delete()
                 
 
 

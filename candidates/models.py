@@ -5,9 +5,9 @@ class CandidateManager(models.Manager):
     def search(self, query):
         return self.get_queryset().filter(models.Q(party__name__icontains=query) |
             models.Q(position__position__icontains=query) |
-            models.Q(name_icontains=query) |
-            models.Q(number_iexact=query) |
-            models.Q(union_icontains=query))
+            models.Q(name__icontains=query) |
+            models.Q(number__iexact=query) |
+            models.Q(union__icontains=query))
 
 class Candidate(models.Model):
     name = models.CharField(max_length=250)

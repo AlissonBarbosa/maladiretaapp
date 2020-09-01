@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load app_tags %}
+
 {% if messages %}
 {% include 'messages/message.html' %}
 {% endif %}
@@ -76,25 +78,31 @@
             </div>
             <!-- END DATA TABLE -->
             {% if is_paginated %}
-                <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    {% if page_obj.number > 6 %}
+                        <li class="page-item"><a class="page-link" href="?{% url_add_query page=previous_page %}"><i class="fas fa-fast-backward"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="?{% url_add_query page=page_obj.previous_page_number %}">Anterior</a></li>
                     {% else %}
-                        <li class="page-item disabled"><span class="page-link">Anteiror</span></li>
+                        <li class="page-item"><a class="page-link" href="?{% url_add_query page=page_obj.previous_page_number %}">Anterior</a></li>
                     {% endif %}
-                    {% for i in paginator.page_range %}
-                        {% if page_obj.number == i %}
-                            <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% else %}
-                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Próximo</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Anteiror</span></li>
+                {% endif %}
+                {% for i in pages %}
+                    {% if page_obj.number == i %}
+                        <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
                     {% else %}
-                        <li class="disabled page-item"><span class="page-link">Próximo</span></li>
+                        <li class="page-item"><a class="page-link" href="?{% url_add_query page=i %}">{{ i }}</a></li>
                     {% endif %}
-                </ul>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?{% url_add_query page=page_obj.next_page_number %}">Próximo</a></li>
+                    <li class="page-item"><a class="page-link" href="?{% url_add_query page=next_page %}"><i class="fas fa-fast-forward"></i></a></li>
+                {% else %}
+                    <li class="disabled page-item"><span class="page-link">Próximo</span></li>
+                {% endif %}
+            </ul>
             {% endif %}
         </div>
     </div>

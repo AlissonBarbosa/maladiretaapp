@@ -27,7 +27,8 @@ class CustomerForm(forms.ModelForm):
             'zone': 'Zona',
             'section': 'Seção',
             'profession': 'Profissão',
-            'recurrence': 'Retorno'
+            'recurrence': 'Retorno',
+            'location_reference': 'Ref. Local'
         }
         widgets = {
             'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
@@ -46,13 +47,14 @@ class CustomerForm(forms.ModelForm):
             'phone_number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'placeholder': '(xx)xxxx-xxxx', 'data-mask':"(00)0000-0000"}),
             'phone_home': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'placeholder': '(xx)xxxx-xxxx', 'data-mask':"(00)0000-0000"}),
             'cellphone': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'placeholder': '(xx)xxxxx-xxxx', 'data-mask':"(00)00000-0000"}),
-            'leadership': forms.Select(attrs={'class':"form-control cc-name valid"}),
+            'leadership': forms.TextInput(attrs={'class':"form-control cc-name valid"}),
             'subscription': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'zone': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'section': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'profession': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'recurrence': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
+            'recurrence': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'location_reference': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
         }
         error_messages = {
             'name': {
