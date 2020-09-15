@@ -3,7 +3,7 @@ from django.urls import reverse
 
 class SolicitationManager(models.Manager):
     def search(self, query):
-        return self.get_queryset(models.Q(description__icontais=query) | 
+        return self.get_queryset().filter(models.Q(description__icontains=query) | 
             models.Q(created__icontains=query) | 
             models.Q(note__icontains=query) | 
             models.Q(description__iexact=query) | 
@@ -13,12 +13,14 @@ class SolicitationManager(models.Manager):
 
 class Solicitation(models.Model):
     created = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
     description = models.TextField()
     indication = models.CharField(max_length=250, blank=True, null=True)
     value = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
     situation = models.CharField(max_length=9, default="ABERTO")
     note = models.TextField(blank=True, null=True)
     customer = models.ForeignKey('customers.Customer', on_delete=models.CASCADE)
+    historic = models.TextField(blank=True, null=True)
 
     objects = SolicitationManager()
 

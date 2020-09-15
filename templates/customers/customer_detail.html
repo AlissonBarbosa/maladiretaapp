@@ -182,6 +182,14 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Observação:</label>
+                                <textarea type="text" placeholder="{{ customer.note }}" disabled="" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
 						<div class="col-6">
 							<div class="form-actions form-group">
 								<button onclick="window.location.href='{% url 'customers:editar' customer.pk %}'" class="btn btn-warning btn-md">Editar</button>

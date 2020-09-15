@@ -15,18 +15,10 @@
 					<form action="" method="post" novalidate="novalidate">
 						{% csrf_token %}
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.customer.label_tag }}</label>
                                     {{ form.customer }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="cc-payment" class="control-label mb-1">{{ form.description.label_tag }}</label>
-                                    {{ form.description }}
                                 </div>
                             </div>
                         </div>
@@ -55,13 +47,29 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.description.label_tag }}</label>
+                                    {{ form.description }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.historic.label_tag }}</label>
+                                    {{ form.historic }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.note.label_tag }}</label>
                                     {{ form.note }}
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions form-group">
-                            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                            <button type="submit" class="btn btn-primary btn-md">Salvar</button>
                         </div>
 					</form>
 				</div>

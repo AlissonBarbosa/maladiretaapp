@@ -22,7 +22,9 @@ class LeadershipForm(forms.ModelForm):
             'birth': 'Nascimento',
             'nickname': 'Pseudonimo',
             'note': 'Observação',
-            'position': 'Cargo'
+            'position': 'Cargo',
+            'office': 'Cargo(Avulso)',
+            'pendency': 'Pendência'
         }
         widgets = {
             'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
@@ -42,7 +44,9 @@ class LeadershipForm(forms.ModelForm):
             'nickname': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'note': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'position': forms.Select(attrs={'class':"form-control cc-name valid"})
+            'position': forms.Select(attrs={'class':"form-control cc-name valid"}),
+            'office': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'pendency': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
         }
         error_messages = {
             'name': {

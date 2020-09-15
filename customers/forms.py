@@ -28,7 +28,8 @@ class CustomerForm(forms.ModelForm):
             'section': 'Seção',
             'profession': 'Profissão',
             'recurrence': 'Retorno',
-            'location_reference': 'Ref. Local'
+            'location_reference': 'Ref. Local',
+            'note': 'Observação'
         }
         widgets = {
             'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
@@ -54,6 +55,7 @@ class CustomerForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'profession': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'recurrence': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'note': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'location_reference': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
         }
         error_messages = {

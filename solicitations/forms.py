@@ -13,21 +13,25 @@ class SolicitationForm(forms.ModelForm):
         model = Solicitation
         fields = '__all__'
         labels = {
-            'created': 'Criado em:',
+            'created': 'Criado em',
+            'updated': 'Atualizado em',
             'description': 'Descrição',
             'indication': 'Indicação', 
             'value': 'Valor', 
             'situation': 'Situação',
             'note': 'Observação',
-            'customer': 'Cliente'
+            'customer': 'Cliente',
+            'historic': 'Histórico'
         }
         widgets = {
             'created': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'updated': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'description': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'indication': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'value': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'situation': forms.Select(attrs={'class':"form-control cc-name valid"}, choices=SITUACAO),
             'note': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'historic': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'customer': forms.Select(attrs={'class':"form-control cc-name valid"})
         }
         error_messages = {

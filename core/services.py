@@ -6,6 +6,7 @@ from parties.models import Party
 from leadership.models import Leadership
 from candidates.models import Candidate
 from customers.models import Customer
+from solicitations.models import Solicitation
 from datetime import datetime
 import csv
 
@@ -256,6 +257,7 @@ def cliente():
                 customer.reference = row[3]
                 customer.state = row[4]
                 customer.cep = row[5]
+                customer.old_id = row[10]
                 customer.note = row[11]
                 customer.cpf = row[12]
                 customer.rg = row[13]
@@ -282,9 +284,69 @@ def cliente():
 def exclui_clientes():
     for customer in Customer.objects.all():
         customer.delete()
-                
 
+def lideranca():
+    with open('/maladireta/database/liderancas.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                print(f'{", ".join(row)}')
+                line_count += 1
+            elif line_count == 1:
+                leadership = Leadership()
+                leadership.name = row[1]
+                if row[3]:
+                    leadership.birth = to_datetime_inverted(row[3].split(' ')[0])
+                leadership.rg = row[4]
+                leadership.cpf = row[5]
+                leadership.nickname = row[6]
+                if row[8]:
+                    position_query = Position.objects.search(row[8])
+                    if position_query:
+                        leadership.position = position_query[0]
+                    else:
+                        leadership.office = row[8]
+                leadership.neighborhood = row[10]
+                leadership.city = row[11]
+                leadership.state = row[12]
+                leadership.cep = row[13]
+                leadership.phone_home = row[14]
+                leadership.phone_number = row[15]
+                leadership.cellphone = row[16]
+                leadership.email = row[17]
+                leadership.street = row[19]
+                leadership.number = row[23]
+                leadership.pendency = row[24]
+                leadership.note = row[25]
+                leadership.save()
 
-                        
+def pleito():
+    with open('/maladireta/database/pleitos.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        without_customer = 0
+        with_customer = 0
+        for row in csv_reader:
+            if line_count == 0:
+                print(f'{", ".join(row)}')
+            else:
+                customer_query = Customer.objects.filter(old_id=row[1])
+                if customer_query and len(customer_query) == 1:
+                    solicitation = Solicitation()
+                    solicitation.description = row[3]
+                    solicitation.customer = customer_query[0]
+                    solicitation.note = row[5]
+                    solicitation.indication = row[7]
+                    if row[10]:
+                        solicitation.value = row[10]
+                    solicitation.situation = row[11]
+                    solicitation.historic = row[13]
+                    solicitation.save()
+                else:
+                    print(f'{", ".join(row)}')
+            line_count += 1
 
-        
+def exclui_pleitos():
+    for solicitation in Solicitation.objects.all():
+        solicitation.delete()

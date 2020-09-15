@@ -13,8 +13,8 @@ class Candidate(models.Model):
     name = models.CharField(max_length=250)
     number = models.IntegerField()
     union = models.CharField(max_length=350, blank=True, null=True)
-    party = models.ForeignKey('parties.Party', on_delete=models.CASCADE)
-    position = models.ForeignKey('positions.Position', on_delete=models.CASCADE)
+    party = models.ForeignKey('parties.Party', on_delete=models.SET_NULL, null=True)
+    position = models.ForeignKey('positions.Position', on_delete=models.SET_NULL, null=True)
     votes = models.IntegerField(blank=True, null=True)
 
     objects = CandidateManager()

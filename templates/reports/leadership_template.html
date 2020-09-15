@@ -1,0 +1,42 @@
+<html>
+ <head>
+   <title>Test</title>
+   <style>
+     h1 {
+       text-align: center;
+     }
+
+     table {
+       border: 1px solid;
+       margin: 0 auto;
+       width: 70%;
+     }
+
+     td, th {
+       text-align: center;
+       border: 1px solid;
+     }
+   </style>
+ </head>
+ <body>
+   <h1>Lista de Lideranças</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Last Name</th>
+         <th>First Name</th>
+         <th>Email</th>
+       </tr>
+     </thead>
+     <tbody>
+       {% for leadership in leaderships %}
+         <tr>
+           <td>{{ leadership.name }}</td>
+           <td>{{ leadership.nickname }}</td>
+           <td>{{ leadership.email }}</td>
+         </tr>
+       {% endfor %}    
+     </tbody>
+   </table>
+ </body>
+</html>

@@ -9,35 +9,33 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 
 from .models import Leadership
+from  positions.models import Position
 from .forms import LeadershipForm
 
 def export_telegrama(request):
         query = request.session.get("query_filter")
         if query:
-            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name,
+            content = []
+            for leadership in Leadership.objects.search(query):
+                abbreviation = "Sr(a)"
+                if leadership.position:
+                    abbreviation = Position.objects.search(leadership.position)[0].abbreviation
+                content.append("{}#{}#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name, abbreviation.replace("\n",''),
                         leadership.name, leadership.street,
                         leadership.neighborhood, leadership.number,
                         leadership.city, leadership.state,
-                        leadership.cep.replace('.','').replace('-',''))
-                        if not leadership.position.abbreviation else
-                        "{}#{}#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name, leadership.position.abbreviation.replace("\n",''),
-                        leadership.name, leadership.street,
-                        leadership.neighborhood, leadership.number,
-                        leadership.city, leadership.state,
-                        leadership.cep.replace('.','').replace('-','')) for leadership in Leadership.objects.search(query)]
+                        leadership.cep.replace('.','').replace('-','')))
         else:
-            content = [ "{}#Sr(a)#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name,
+            content = []
+            for leadership in Leadership.objects.all():
+                abbreviation = "Sr(a)"
+                if leadership.position:
+                    abbreviation = Position.objects.search(leadership.position)[0].abbreviation
+                content.append("{}#{}#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name, abbreviation.replace("\n",''),
                         leadership.name, leadership.street,
                         leadership.neighborhood, leadership.number,
                         leadership.city, leadership.state,
-                        leadership.cep.replace('.','').replace('-',''))
-                        if not leadership.position.abbreviation else
-                        "{}#{}#{}#{}#{}#{}#{}#{}#{}#Brasil#######\n".format(leadership.name, leadership.position.abbreviation.replace("\n",''),
-                        leadership.name, leadership.street,
-                        leadership.neighborhood, leadership.number,
-                        leadership.city, leadership.state,
-                        leadership.cep.replace('.','').replace('-',''))
-                        for leadership in Leadership.objects.all()]
+                        leadership.cep.replace('.','').replace('-','')))
 
         filename = "telegrama_lideranças.txt"
         response = HttpResponse(content, content_type='text/plain')
@@ -93,6 +91,7 @@ class LeadershipListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
+        self.request.session['query_origin'] = 'Leadership'
         if filter_value:
             context = Leadership.objects.search(filter_value)
             self.request.session['query_filter'] = filter_value

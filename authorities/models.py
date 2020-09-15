@@ -24,8 +24,8 @@ class Authoritie(models.Model):
     birth = models.DateField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    position = models.ForeignKey('positions.Position', on_delete=models.CASCADE, blank=True, null=True)
-    institution = models.ForeignKey('institutions.Institution', on_delete=models.CASCADE, blank=True, null=True)
+    position = models.ForeignKey('positions.Position', on_delete=models.SET_NULL, blank=True, null=True)
+    institution = models.ForeignKey('institutions.Institution', on_delete=models.SET_NULL, blank=True, null=True)
 
     objects = AuthoritieManager()
 

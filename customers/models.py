@@ -36,6 +36,7 @@ class Customer(models.Model):
     note = models.TextField(blank=True, null=True)
     updated = models.DateField(auto_now=True)
     location_reference = models.TextField(blank=True, null=True)
+    old_id = models.CharField(max_length=15, blank=True, null=True)
 
     objects = CustomerManager()
 

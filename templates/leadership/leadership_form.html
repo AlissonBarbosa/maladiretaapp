@@ -13,23 +13,23 @@
 				<div class="card-header">Criar Liderança</div>
 				<div class="card-body">
 					<form action="" method="post" novalidate="novalidate">
-						{% csrf_token %}
+                        {% csrf_token %}
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.name.label_tag }}</label>
                                     {{ form.name }}
                                 </div>
                             </div>
-                            <div class="col-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.nickname.label_tag }}</label>
                                     {{ form.nickname }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.birth.label_tag }}</label>
                                     {{ form.birth }}
@@ -79,13 +79,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.street.label_tag }}</label>
                                     {{ form.street }}
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.number.label_tag }}</label>
                                     {{ form.number }}
@@ -121,16 +121,30 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.cep.label_tag }}</label>
                                     {{ form.cep }}
                                 </div>
                             </div>
-                            <div class="col-8">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="control-label mb-1">{{ form.pendency.label_tag }}</label>
+                                    {{ form.pendency }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.position.label_tag }}</label>
                                     {{ form.position }}
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="control-label mb-1">{{ form.office.label_tag }}</label>
+                                    {{ form.office }}
                                 </div>
                             </div>
                         </div>
