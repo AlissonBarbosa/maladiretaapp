@@ -11,13 +11,15 @@ class LeadershipManager(models.Manager):
         elif "Mes:" in query:
             month = query.split(":")[1]
             return self.get_queryset().filter(models.Q(birth__month=month))
+        elif "Cargo:" in query:
+            position = query.split(":")[1].replace(" ","")
+            return self.get_queryset().filter(models.Q(position__position__icontains=position))
         else:
             return self.get_queryset().filter(models.Q(name__icontains=query) | 
                 models.Q(nickname__icontains=query) | 
                 models.Q(note__icontains=query) | 
                 models.Q(rg__iexact=query) | 
-                models.Q(cpf__iexact=query) |
-                models.Q(position__position__icontains=query))
+                models.Q(cpf__iexact=query))
 
 class Leadership(models.Model):
     name = models.CharField(max_length=250)
