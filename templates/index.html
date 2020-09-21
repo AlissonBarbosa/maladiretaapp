@@ -1,6 +1,104 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-
+<div class="container-fluid">
+    <div class="row">
+        <!-- <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#scrollmodal">
+            Scrolling
+        </button> -->
+        <div class="col-md-6 col-lg-4">
+            <div class="top-campaign">
+                <h3 class="title-3 m-b-30">Clientes</h3>
+                <div class="table-responsive">
+                    <table class="table table-top-campaign">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ customers.total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Endereço completo</td>
+                                <td>{{ customers.address }} - {{ customers.percentage_address }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com telefone</td>
+                                <td>{{ customers.phone }} - {{ customers.percentage_phone }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com email</td>
+                                <td>{{ customers.email }} - {{ customers.percentage_email }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com Nascimento</td>
+                                <td>{{ customers.birth }} - {{ customers.percentage_birth }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="top-campaign">
+                <h3 class="title-3 m-b-30">Lideranças</h3>
+                <div class="table-responsive">
+                    <table class="table table-top-campaign">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ leadership.total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Endereço completo</td>
+                                <td>{{ leadership.address }} - {{ leadership.percentage_address }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com telefone</td>
+                                <td>{{ leadership.phone }} - {{ leadership.percentage_phone }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com email</td>
+                                <td>{{ leadership.email }} - {{ leadership.percentage_email }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com nascimento</td>
+                                <td>{{ leadership.birth }} - {{ leadership.percentage_birth }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="top-campaign">
+                <h3 class="title-3 m-b-30">Autoridades</h3>
+                <div class="table-responsive">
+                    <table class="table table-top-campaign">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ authorities.total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Com telefone</td>
+                                <td>{{ authorities.phone }} - {{ authorities.percentage_phone }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com telefone</td>
+                                <td>{{ leadership.phone }} - {{ leadership.percentage_phone }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com email</td>
+                                <td>{{ leadership.email }} - {{ leadership.percentage_email }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com nascimento</td>
+                                <td>{{ leadership.birth }} - {{ leadership.percentage_birth }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}  
