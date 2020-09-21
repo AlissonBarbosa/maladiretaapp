@@ -1,0 +1,99 @@
+<html>
+
+	<head>
+		<title>Relatório Autoridades</title>
+   		<style>
+		   @charset "UTF-8";
+		   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+		   @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap");
+		   @page {
+			    size: A4 landscape;;
+		     	margin: 1cm;
+				counter-increment: page;
+  				@bottom-left {
+    				color: #a9a;
+    				content: 'Mala Direta - Romero Rodrigues';
+    				font-family: 'PT Sans';
+    				font-size: 9pt; }
+				@bottom-right {
+    				color: #a9a;
+    				content: 'Pág ' counter(page) " de " counter(pages);
+    				font-family: 'PT Sans';
+    				font-size: 9pt; } }
+			html {
+				color: #14213d;
+				font-family: 'Quicksand';
+  				font-size: 11pt;
+  				line-height: 1.6; }
+  				html body {
+  					margin: 0; }
+  				html h1 {
+  					color: #0a271b;
+  					font-family: 'PT Sans';
+  					font-size: 40pt;
+  					margin: 0; }
+				html table {
+					border-collapse: collapse;
+    				width: 100%; }
+				html table td {
+      				padding-top: 3mm; 
+					text-align: left; }
+				.label {
+					font-weight: bold; }
+				.last-tr {
+					border-bottom: .2mm solid #a9a; } }
+   		</style>
+	</head>
+ <body>
+	<h1>Lista de Autoridades</h1>
+	<hr>
+	<div class="table-div">
+		<table>
+			<tbody>
+				{% for authoritie in authorities %}
+				<tr>
+					<td class="label">Nome:</td>
+					<td>{{ authoritie.name }}</td>
+					<td class="label">Cargo:</td>
+					<td>{{ authoritie.position }}</td>
+					<td class="label">Instituição:</td>
+					<td>{{ authoritie.institution }}</td>
+				</tr>
+				<tr>
+					<td class="label">Nascimento:</td>
+					<td>{{ authoritie.birth }}</td>
+					<td class="label">Email:</td>
+					<td>{{ authoritie.email }}</td>
+					<td class="label">Telefone:</td>
+					<td>{{ authoritie.phone_number }}</td>
+				</tr>
+				<tr>
+					<td class="label">Email(Inst.):</td>
+                    <td>{{ authoritie.institution.email }}</td>
+                    <td class="label">Telefone(Inst.):</td>
+                    <td>{{ authoritie.institution.phone_number }}</td>
+					<td class="label">Rua:</td>
+					<td>{{ authoritie.institution.street }}</td>
+				</tr>
+				<tr>
+					<td class="label">Bairro:</td>
+					<td>{{ authoritie.institution.neighborhood }}</td>
+					<td class="label">Cidade:</td>
+                    <td>{{ authoritie.institution.city }}</td>
+                    <td class="label">Número:</td>
+                    <td>{{ authoritie.institution.number }}</td>
+				</tr>
+				<tr class="last-tr">
+                    <td class="label">CEP:</td>
+					<td>{{ authoritie.institution.cep }}</td>
+					<td class="label">Estado:</td>
+                    <td>{{ authoritie.institution.state }}</td>
+                    <td class="label">Observação:</td>
+                    <td>{{ authoritie.institution.note }}</td>
+                </tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+ </body>
+</html>

@@ -1,7 +1,6 @@
 <html>
-
 	<head>
-		<title>Relatório Lideranças</title>
+		<title>Relatório Clientes</title>
    		<style>
 		   @charset "UTF-8";
 		   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
@@ -44,52 +43,54 @@
 					border-bottom: .2mm solid #a9a; } }
    		</style>
 	</head>
- <body>
-	<h1>Lista de Lideranças</h1>
+<body>
+	<h1>Lista de Clientes</h1>
 	<hr>
 	<div class="table-div">
 		<table>
 			<tbody>
-				{% for leadership in leaderships %}
+				{% for customer in customers %}
 				<tr>
 					<td class="label">Nome:</td>
-					<td>{{ leadership.name }}</td>
-					<td class="label">Cargo:</td>
-					<td>{{ leadership.position }}</td>
+					<td>{{ customer.name }}</td>
+					<td class="label">Pseudonimo:</td>
+					<td>{{ customer.nickname }}</td>
 					<td class="label">Rua:</td>
-					<td>{{ leadership.street }}</td>
+					<td>{{ customer.street }}</td>
 					<td class="label">Número:</td>
-					<td>{{ leadership.number }}</td>
+					<td>{{ customer.number }}</td>
 				</tr>
 				<tr>
 					<td class="label">Bairro:</td>
-					<td>{{ leadership.neighborhood }}</td>
+					<td>{{ customer.neighborhood }}</td>
 					<td class="label">CEP:</td>
-					<td>{{ leadership.cep }}</td>
+					<td>{{ customer.cep }}</td>
 					<td class="label">Cidade:</td>
-					<td>{{ leadership.city }}</td>
+					<td>{{ customer.city }}</td>
 				</tr>
 				<tr>
 					<td class="label">Telefone:</td>
-					<td>{{ leadership.phone_number }}</td>
+					<td>{{ customer.phone_number }}</td>
 					<td class="label">Celular:</td>
-					<td>{{ leadership.cellphone }}</td>
+					<td>{{ customer.cellphone }}</td>
 					<td class="label">Residencial:</td>
-					<td>{{ leadership.phone_home }}</td>
+					<td>{{ customer.phone_home }}</td>
 				</tr>
 				<tr>
                     <td class="label">Email:</td>
-					<td>{{ leadership.email }}</td>
-					<td class="label">Nascimento:</td>
-					<td>{{ leadership.birth }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td class="label">Liderança</td>
+                    <td>{{ customer.leadership }}</td>
+                    <td class="label">Referência:</td>
+                    <td>{{ customer.reference }}</td>
                 </tr>
 				<tr class="last-tr">
 					<td class="label">Observação:</td>
-					<td>{{ leadership.note }}</td>
-					<td class="label">Cargo(Ref):</td>
-					<td>{{ leadership.office }}</td>
-					<td class="label">Pendência:</td>
-					<td>{{ leadership.pendency }}</td>
+					<td>{{ customer.note }}</td>
+					<td class="label">Profissão:</td>
+					<td>{{ customer.profession }}</td>
+					<td class="label">Retorno:</td>
+					<td>{{ customer.recurrence }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
