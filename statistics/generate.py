@@ -1,6 +1,7 @@
 from customers.models import Customer
 from leadership.models import Leadership
 from authorities.models import Authoritie
+from candidates.models import Candidate
 
 class Generate(object):
 
@@ -125,9 +126,57 @@ class Generate(object):
         phone = total - no_phone_number.count()
         percentage_phone = round((100*phone)/total, 1)
 
+         #EMAIL STATISTICS
+        no_email = Authoritie.objects.filter(email='') | Authoritie.objects.filter(email=None)
+        email = total - no_email.count()
+        percentage_email = round((100*email)/total, 1)
+
+        # BIRTH STATISTICS
+        birth = Authoritie.objects.exclude(birth=None).count()
+        percentage_birth = round((100*birth)/total, 1)
+
+        # INSTITUTION STATISTCS
+        institution = Authoritie.objects.exclude(institution=None).count()
+        percentage_institution = round((100*institution)/total, 1)
+
         authorities = {'total': total,
                         'phone': phone,
-                        'percentage_phone': percentage_phone}
+                        'percentage_phone': percentage_phone,
+                        'email': email,
+                        'percentage_email': percentage_email,
+                        'birth': birth,
+                        'percentage_birth': percentage_birth,
+                        'institution': institution,
+                        'percentage_institution': percentage_institution}
 
         return authorities
+
+    def statistic_candidates(self):
+        total = Candidate.objects.count()
+
+        # PARTY STATISTICS
+        party = Candidate.objects.exclude(party=None).count()
+        percentage_party = round((100*party)/total, 1)
+
+        # POSITION STATISTICS
+        president = Candidate.objects.filter(position__position="Presidente").count()
+        senator = Candidate.objects.filter(position__position="Senador").count()
+        congressman = Candidate.objects.filter(position__position="Deputado Federal").count()
+        governor = Candidate.objects.filter(position__position="Governador").count()
+        state_deputy = Candidate.objects.filter(position__position="Deputado Estadual").count()
+        mayor = Candidate.objects.filter(position__position="Prefeito").count()
+        city_councilor = Candidate.objects.filter(position__position="Vereador").count()
+
+        candidates = {'total': total,
+                        'party': party,
+                        'percentage_party': percentage_party,
+                        'president': president,
+                        'senator': senator,
+                        'congressman': congressman,
+                        'governor': governor,
+                        'state_deputy': state_deputy,
+                        'mayor': mayor,
+                        'city_councilor': city_councilor}
+
+        return candidates
         

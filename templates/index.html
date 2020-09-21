@@ -3,9 +3,6 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <!-- <button type="button" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#scrollmodal">
-            Scrolling
-        </button> -->
         <div class="col-md-6 col-lg-4">
             <div class="top-campaign">
                 <h3 class="title-3 m-b-30">Clientes</h3>
@@ -83,16 +80,65 @@
                                 <td>{{ authorities.phone }} - {{ authorities.percentage_phone }}%</td>
                             </tr>
                             <tr>
-                                <td>Com telefone</td>
-                                <td>{{ leadership.phone }} - {{ leadership.percentage_phone }}%</td>
-                            </tr>
-                            <tr>
                                 <td>Com email</td>
-                                <td>{{ leadership.email }} - {{ leadership.percentage_email }}%</td>
+                                <td>{{ authorities.email }} - {{ authorities.percentage_email }}%</td>
                             </tr>
                             <tr>
                                 <td>Com nascimento</td>
-                                <td>{{ leadership.birth }} - {{ leadership.percentage_birth }}%</td>
+                                <td>{{ authorities.birth }} - {{ authorities.percentage_birth }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Com Instituição</td>
+                                <td>{{ authorities.institution }} - {{ authorities.percentage_institution }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <div class="top-campaign">
+                <h3 class="title-3 m-b-30">Candidatos</h3>
+                <div class="table-responsive">
+                    <table class="table table-top-campaign">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ candidates.total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Com partido</td>
+                                <td>{{ candidates.party }} - {{ candidates.percentage_party }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Presidente</td>
+                                <td>{{ candidates.president }}</td>
+                            </tr>
+                            <tr>
+                                <td>Senador</td>
+                                <td>{{ candidates.senator }}</td>
+                            </tr>
+                            <tr>
+                                <td>Deputado Federal</td>
+                                <td>{{ candidates.congressman }}</td>
+                            </tr>
+                            <tr>
+                                <td>Governador</td>
+                                <td>{{ candidates.governor }}</td>
+                            </tr>
+                            <tr>
+                                <td>Deputado Estadual</td>
+                                <td>{{ candidates.state_deputy }}</td>
+                            </tr>
+                            <tr>
+                                <td>Prefeito</td>
+                                <td>{{ candidates.mayor }}</td>
+                            </tr>
+                            <tr>
+                                <td>Vereador</td>
+                                <td>{{ candidates.city_councilor }}</td>
                             </tr>
                         </tbody>
                     </table>
