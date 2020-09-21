@@ -1,13 +1,44 @@
 from django.shortcuts import render
-from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
+#from django.core.files.storage import FileSystemStorage
 from leadership.models import Leadership
+from employees.models import Employee
+from customers.models import Customer
+from candidates.models import Candidate
+from authorities.models import Authoritie
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
+from statistics.generate import Generate
 
+@login_required
 def index(request):
-    return render(request, 'index.html')
+    generate = Generate()
+    customers = generate.statistic_customers()
+    leadership = generate.statistic_leadership()
+    authorities = generate.statistic_authorities()
+    candidates = generate.statistic_candidates()
+    context = {'customers': customers,
+                'leadership': leadership,
+                'authorities': authorities,
+                'candidates': candidates}
+    return render(request, 'index.html', context)
+
+def export_pdf(html_string, filename):
+    html = HTML(string=html_string)
+    result = html.write_pdf()
+
+    response = HttpResponse(content_type='application/pdf;')
+    response['Content-Disposition'] = 'inline; filename={}.pdf'.format(filename)
+    response['Content-Transfer-Encoding'] = 'binary'
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        response.write(output.read())
+
+    return response
 
 def export_leadership_pdf(query): 
     html_string = render_to_string('reports/leadership_template.html', {'leaderships': query})
@@ -15,9 +46,63 @@ def export_leadership_pdf(query):
     html = HTML(string=html_string)
     result = html.write_pdf()
 
-   # Creating http response
     response = HttpResponse(content_type='application/pdf;')
     response['Content-Disposition'] = 'inline; filename=Relatorio_Liderancas.pdf'
+    response['Content-Transfer-Encoding'] = 'binary'
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        response.write(output.read())
+
+    return response
+
+def export_employee_pdf(query):
+    html_string = render_to_string('reports/employee_template.html', {'employees': query})
+    return export_pdf(html_string=html_string, filename="Relatorio Funcionarios")
+
+def export_customer_pdf(query):
+    html_string = render_to_string('reports/customer_template.html', {'customers': query})
+    
+    html = HTML(string=html_string)
+    result = html.write_pdf()
+
+    response = HttpResponse(content_type='application/pdf;')
+    response['Content-Disposition'] = 'inline; filename=Relatorio_Clientes.pdf'
+    response['Content-Transfer-Encoding'] = 'binary'
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        response.write(output.read())
+
+    return response
+
+def export_candidate_pdf(query):
+    html_string = render_to_string('reports/candidate_template.html', {'candidates': query})
+    
+    html = HTML(string=html_string)
+    result = html.write_pdf()
+
+    response = HttpResponse(content_type='application/pdf;')
+    response['Content-Disposition'] = 'inline; filename=Relatorio_Candidatos.pdf'
+    response['Content-Transfer-Encoding'] = 'binary'
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        response.write(output.read())
+
+    return response
+
+def export_authoritie_pdf(query):
+    html_string = render_to_string('reports/authoritie_template.html', {'authorities': query})
+    
+    html = HTML(string=html_string)
+    result = html.write_pdf()
+
+    response = HttpResponse(content_type='application/pdf;')
+    response['Content-Disposition'] = 'inline; filename=Relatorio_Autoridades.pdf'
     response['Content-Transfer-Encoding'] = 'binary'
     with tempfile.NamedTemporaryFile(delete=True) as output:
         output.write(result)
@@ -36,3 +121,23 @@ def generate_report(request):
             return export_leadership_pdf(Leadership.objects.search(query_filter))
         else:
             return export_leadership_pdf(Leadership.objects.all())
+    elif origin == "Employee":
+        if query_filter:
+            return export_employee_pdf(Employee.objects.search(query_filter))
+        else:
+            return export_employee_pdf(Employee.objects.all())
+    elif origin == "Customer":
+        if query_filter:
+            return export_customer_pdf(Customer.objects.search(query_filter))
+        else:
+            return export_customer_pdf(Customer.objects.all())
+    elif origin == "Candidate":
+        if query_filter:
+            return export_candidate_pdf(Candidate.objects.search(query_filter))
+        else:
+            return export_candidate_pdf(Candidate.objects.all())
+    elif origin == "Authoritie":
+        if query_filter:
+            return export_authoritie_pdf(Authoritie.objects.search(query_filter))
+        else:
+            return export_authoritie_pdf(Authoritie.objects.all())

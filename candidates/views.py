@@ -60,10 +60,13 @@ class CandidateListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
+        self.request.session['query_origin'] = 'Candidate'
         if filter_value:
             context = Candidate.objects.search(filter_value)
+            self.request.session['query_filter'] = filter_value
         else:
             context = Candidate.objects.all()
+            self.request.session['query_filter'] = None
         return context
 
 class CandidateUpdateView(LoginRequiredMixin, UpdateView):

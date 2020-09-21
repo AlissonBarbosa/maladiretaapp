@@ -12,11 +12,14 @@ class AuthoritieManager(models.Manager):
         elif "Mes:" in query:
             month = query.split(":")[1]
             return self.get_queryset().filter(models.Q(birth__month=month))
+        elif "Cargo: " in query:
+            position = query.split("Cargo: ")[1]
+            return self.get_queryset().filter(models.Q(position__position__iexact=position))
         else:
             return self.get_queryset().filter(models.Q(institution__name__icontains=query) |
-                    models.Q(position__position__icontains=query) |
                     (models.Q(name__icontains=query) |
                     (models.Q(email__icontains=query))))
+        
 
 class Authoritie(models.Model):
     name = models.CharField(max_length=250)

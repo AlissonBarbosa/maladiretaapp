@@ -3,7 +3,7 @@ from django.urls import reverse
 
 class PositionManager(models.Manager):
     def search(self, query):
-        return self.get_queryset().filter(models.Q(position__icontains=query) | models.Q(handling__icontains=query) | models.Q(abbreviation__icontains=query))
+        return self.get_queryset().filter(models.Q(position__iexact=query) | models.Q(handling__icontains=query) | models.Q(abbreviation__icontains=query))
 
 class Position(models.Model):
     position = models.CharField(max_length=150, unique=True)

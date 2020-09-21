@@ -350,3 +350,7 @@ def pleito():
 def exclui_pleitos():
     for solicitation in Solicitation.objects.all():
         solicitation.delete()
+
+def exclui_autoridades():
+    for authoritie in Authoritie.objects.all():
+        authoritie.delete()

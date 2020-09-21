@@ -83,6 +83,7 @@ class CustomerListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
+        self.request.session['query_origin'] = 'Customer'
         if filter_value:
             context = Customer.objects.search(filter_value)
             self.request.session['query_filter'] = filter_value

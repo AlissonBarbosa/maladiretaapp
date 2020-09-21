@@ -3,11 +3,15 @@ from django.urls import reverse
 
 class CustomerManager(models.Manager):
     def search(self, query):
-        return self.get_queryset().filter(models.Q(leadership__icontains=query) |
-            models.Q(name__icontains=query) |
+        if "Referencia:" in query:
+            office = query.split(":")[1].replace(" ","")
+            return self.get_queryset().filter(models.Q(reference__icontains=office))
+        elif "Lideranca:" in query:
+            office = query.split(":")[1].replace(" ","")
+            return self.get_queryset().filter(models.Q(leadership__icontains=office))
+        return self.get_queryset().filter(models.Q(name__icontains=query) |
             models.Q(nickname__iexact=query) |
-            models.Q(profession__icontains=query) |
-            models.Q(reference__icontains=query))
+            models.Q(profession__icontains=query))
 
 class Customer(models.Model):
     name = models.CharField(max_length=250)

@@ -11,9 +11,12 @@ class LeadershipManager(models.Manager):
         elif "Mes:" in query:
             month = query.split(":")[1]
             return self.get_queryset().filter(models.Q(birth__month=month))
-        elif "Cargo:" in query:
-            position = query.split(":")[1].replace(" ","")
-            return self.get_queryset().filter(models.Q(position__position__icontains=position))
+        elif "Cargo: " in query:
+            position = query.split("Cargo: ")[1]
+            return self.get_queryset().filter(models.Q(position__position__iexact=position))
+        elif "Referencia: " in query:
+            office = query.split("Referencia: ")[1]
+            return self.get_queryset().filter(models.Q(office__icontains=office))
         else:
             return self.get_queryset().filter(models.Q(name__icontains=query) | 
                 models.Q(nickname__icontains=query) | 

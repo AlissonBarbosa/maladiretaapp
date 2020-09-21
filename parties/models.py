@@ -24,7 +24,7 @@ class Party(models.Model):
         return reverse('party:partido', args=[str(self.id)])
     
     def __str__(self):
-        return self.name
+        return "{} - {}".format(self.name, self.initials)
     
     class Meta:
         ordering = ["name"]

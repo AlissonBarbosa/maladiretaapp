@@ -94,6 +94,7 @@ class AuthoritieListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         filter_value = self.request.GET.get('filter')
+        self.request.session['query_origin'] = 'Authoritie'
         if filter_value:
             context = Authoritie.objects.search(filter_value)
             self.request.session['query_filter'] = filter_value
