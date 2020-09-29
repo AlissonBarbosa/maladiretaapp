@@ -13,6 +13,10 @@ import tempfile
 from statistics.generate import Generate
 
 @login_required
+def handler404(request, exception):
+    return render(request, '404.html', status=404)
+
+@login_required
 def index(request):
     generate = Generate()
     customers = generate.statistic_customers()

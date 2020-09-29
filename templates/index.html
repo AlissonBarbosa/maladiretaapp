@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if messages %}
+{% include 'messages/message.html' %}
+{% endif %}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-lg-4">

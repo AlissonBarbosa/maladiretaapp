@@ -51,6 +51,7 @@
                     {% if user.is_authenticated %}
                         <div class="account2">
                             <h4 class="name">{{ user.username }}</h4>
+                            <a href="{% url 'usuarios:change-password' %}">Mudar senha</a>
                             <a href="{% url 'usuarios:logout' %}">Sair</a>
                         </div>
                     {% else %}

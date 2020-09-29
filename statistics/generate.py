@@ -21,7 +21,7 @@ class Generate(object):
             Customer.objects.filter(neighborhood=None)
         no_address = no_address_query.count()
         address = total - no_address
-        percentage_address = round((100*address)/total, 1)
+        percentage_address = round((100*address)/total, 1) if total > 0 else 0
 
         #PHONE STATISTICS
         no_phone_number = Customer.objects.filter(phone_number='') | \
@@ -34,18 +34,16 @@ class Generate(object):
         no_phone_query = no_phone_number.intersection(no_cellphone).intersection(no_phone_home)
         no_phone = no_phone_query.count()
         phone = total - no_phone
-        percentage_phone = round((100*phone)/total, 1)
+        percentage_phone = round((100*phone)/total, 1) if total > 0 else 0
 
         #EMAIL STATISTICS
         no_email = Customer.objects.filter(email='') | Customer.objects.filter(email=None)
         email = total - no_email.count()
-        percentage_email = round((100*email)/total, 1)
+        percentage_email = round((100*email)/total, 1) if total > 0 else 0
 
         # BIRTH STATISTICS
         birth = Customer.objects.exclude(birth=None).count()
-        percentage_birth = round((100*birth)/total, 1)
-
-
+        percentage_birth = round((100*birth)/total, 1) if total > 0 else 0
 
         customers = {'total': total,
                     'address': address,
@@ -75,7 +73,7 @@ class Generate(object):
 
         no_address = no_address_query.count()
         address = total - no_address
-        percentage_address = round((100*address)/total, 1)
+        percentage_address = round((100*address)/total, 1) if total > 0 else 0
 
         #PHONE STATISTICS
         no_phone_number = Leadership.objects.filter(phone_number='') | \
@@ -88,16 +86,16 @@ class Generate(object):
         no_phone_query = no_phone_number.intersection(no_cellphone).intersection(no_phone_home)
         no_phone = no_phone_query.count()
         phone = total - no_phone
-        percentage_phone = round((100*phone)/total, 1)
+        percentage_phone = round((100*phone)/total, 1) if total > 0 else 0
 
         #EMAIL STATISTICS
         no_email = Leadership.objects.filter(email='') | Leadership.objects.filter(email=None)
         email = total - no_email.count()
-        percentage_email = round((100*email)/total, 1)
+        percentage_email = round((100*email)/total, 1) if total > 0 else 0
 
         # BIRTH STATISTICS
         birth = Leadership.objects.exclude(birth=None).count()
-        percentage_birth = round((100*birth)/total, 1)
+        percentage_birth = round((100*birth)/total, 1) if total > 0 else 0
         
         leadership = {'total': total,
                     'address': address,
@@ -156,7 +154,7 @@ class Generate(object):
 
         # PARTY STATISTICS
         party = Candidate.objects.exclude(party=None).count()
-        percentage_party = round((100*party)/total, 1)
+        percentage_party = round((100*party)/total, 1) if total > 0 else 0
 
         # POSITION STATISTICS
         president = Candidate.objects.filter(position__position="Presidente").count()
