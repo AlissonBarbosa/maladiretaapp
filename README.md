@@ -12,7 +12,7 @@ An django Web system used to manipulate contacts and send matches to them
 ## How to use
 
 1- Install the requirements
-3- Create a database and edit settings to connect
-2- Execute like a django project
+2- Create a database and edit settings to connect
+3- Execute like a django project
 
 ## License: MIT

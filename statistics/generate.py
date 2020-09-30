@@ -122,20 +122,20 @@ class Generate(object):
         #no_phone_query = no_phone_number.intersection(no_cellphone).intersection(no_phone_home)
         #no_phone = no_phone_query.count()
         phone = total - no_phone_number.count()
-        percentage_phone = round((100*phone)/total, 1)
+        percentage_phone = round((100*phone)/total, 1) if total > 0 else 0
 
          #EMAIL STATISTICS
         no_email = Authoritie.objects.filter(email='') | Authoritie.objects.filter(email=None)
         email = total - no_email.count()
-        percentage_email = round((100*email)/total, 1)
+        percentage_email = round((100*email)/total, 1) if total > 0 else 0
 
         # BIRTH STATISTICS
         birth = Authoritie.objects.exclude(birth=None).count()
-        percentage_birth = round((100*birth)/total, 1)
+        percentage_birth = round((100*birth)/total, 1) if total > 0 else 0
 
         # INSTITUTION STATISTCS
         institution = Authoritie.objects.exclude(institution=None).count()
-        percentage_institution = round((100*institution)/total, 1)
+        percentage_institution = round((100*institution)/total, 1) if total > 0 else 0
 
         authorities = {'total': total,
                         'phone': phone,
