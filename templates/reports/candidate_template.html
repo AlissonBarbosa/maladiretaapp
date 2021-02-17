@@ -2,50 +2,36 @@
 
 	<head>
 		<title>Relatório Candidatos</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Playfair+Display:wght@500&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
    		<style>
-		   @charset "UTF-8";
-		   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
-		   @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap");
-		   @page {
-			    size: A4 landscape;;
-		     	margin: 1cm;
-				counter-increment: page;
-  				@bottom-left {
-    				color: #a9a;
-    				content: 'Mala Direta - Romero Rodrigues';
-    				font-family: 'PT Sans';
-    				font-size: 9pt; }
-				@bottom-right {
-    				color: #a9a;
-    				content: 'Pág ' counter(page) " de " counter(pages);
-    				font-family: 'PT Sans';
-    				font-size: 9pt; } }
 			html {
-				color: #14213d;
-				font-family: 'Quicksand';
+				color: #000000;
+				font-family: 'Work Sans', sans-serif;
   				font-size: 11pt;
-  				line-height: 1.6; }
-  				html body {
-  					margin: 0; }
-  				html h1 {
-  					color: #0a271b;
-  					font-family: 'PT Sans';
-  					font-size: 40pt;
-  					margin: 0; }
-				html table {
-					border-collapse: collapse;
-    				width: 100%; }
-				html table td {
-      				padding-top: 3mm; 
-					text-align: left; }
-				.label {
-					font-weight: bold; }
-				.last-tr {
-					border-bottom: .2mm solid #a9a; } }
+  				line-height: 1.6;}
+  			html body {
+  				margin: 0; }
+  			html h1 {
+  				color: #000000;
+  				font-family: 'Playfair Display', serif;
+  				font-size: 40pt;
+  				margin: 0; }
+			html table {
+				border-collapse: collapse;
+    			width: 100%;}
+			html table td {
+      			padding-top: 3mm; 
+				text-align: left; }
+			.last-tr {
+				border-bottom: .2mm solid rgb(0, 0, 0); }
+			.label {
+				font-family: 'Playfair Display', serif;
+			}
    		</style>
 	</head>
  <body>
-	<h1>Lista de Candidatos</h1>
+	<h1>Lista de Candidatos - Mala Direta</h1>
 	<hr>
 	<div class="table-div">
 		<table>
@@ -56,7 +42,7 @@
 					<td>{{ candidate.name }}</td>
 					<td class="label">Partido:</td>
 					<td>{{ candidate.party }}</td>
-					<td class="label">Número:</td>
+					<td class="label">Nº:</td>
 					<td>{{ candidate.number }}</td>
 				</tr>
 				<tr class="last-tr">

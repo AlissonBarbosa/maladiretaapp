@@ -1,100 +1,117 @@
 <html>
-
 	<head>
 		<title>Relatório Lideranças</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Playfair+Display:wght@500&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
    		<style>
-		   @charset "UTF-8";
-		   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
-		   @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap");
-		   @page {
-			    size: A4 landscape;;
-		     	margin: 1cm;
-				counter-increment: page;
-  				@bottom-left {
-    				color: #a9a;
-    				content: 'Mala Direta - Romero Rodrigues';
-    				font-family: 'PT Sans';
-    				font-size: 9pt; }
-				@bottom-right {
-    				color: #a9a;
-    				content: 'Pág ' counter(page) " de " counter(pages);
-    				font-family: 'PT Sans';
-    				font-size: 9pt; } }
 			html {
-				color: #14213d;
-				font-family: 'Quicksand';
+				color: #000000;
+				font-family: 'Work Sans', sans-serif;
   				font-size: 11pt;
-  				line-height: 1.6; }
-  				html body {
-  					margin: 0; }
-  				html h1 {
-  					color: #0a271b;
-  					font-family: 'PT Sans';
-  					font-size: 40pt;
-  					margin: 0; }
-				html table {
-					border-collapse: collapse;
-    				width: 100%; }
-				html table td {
-      				padding-top: 3mm; 
-					text-align: left; }
-				.label {
-					font-weight: bold; }
-				.last-tr {
-					border-bottom: .2mm solid #a9a; } }
+  				line-height: 1.6;}
+  			html body {
+  				margin: 0; }
+  			html h1 {
+  				color: #000000;
+  				font-family: 'Playfair Display', serif;
+  				font-size: 40pt;
+  				margin: 0; }
+			html table {
+				border-collapse: collapse;
+    			width: 100%;}
+			html table td {
+      			padding-top: 3mm; 
+				text-align: left; }
+			.last-tr {
+				border-bottom: .2mm solid rgb(0, 0, 0); }
+			.label {
+				font-family: 'Playfair Display', serif;
+			}
    		</style>
 	</head>
  <body>
-	<h1>Lista de Lideranças</h1>
+	<h1>Lista de Lideranças - Mala Direta</h1>
 	<hr>
 	<div class="table-div">
-		<table>
+		<table class="table-leadership">
 			<tbody>
 				{% for leadership in leaderships %}
 				<tr>
 					<td class="label">Nome:</td>
 					<td>{{ leadership.name }}</td>
-					<td class="label">Cargo:</td>
-					<td>{{ leadership.position }}</td>
-					<td class="label">Rua:</td>
-					<td>{{ leadership.street }}</td>
-					<td class="label">Número:</td>
-					<td>{{ leadership.number }}</td>
+					{% if leadership.position %}
+						<td class="label">Cargo:</td>
+						<td>{{ leadership.position }}</td>
+					{% endif %}
+					{% if leadership.street %}
+						<td class="label">Rua:</td>
+						<td>{{ leadership.street }}</td>
+					{% endif %}
+					{% if leadership.number %}
+						<td class="label">Nº:</td>
+						<td>{{ leadership.number }}</td>
+					{% endif %}
 				</tr>
 				<tr>
-					<td class="label">Bairro:</td>
-					<td>{{ leadership.neighborhood }}</td>
-					<td class="label">CEP:</td>
-					<td>{{ leadership.cep }}</td>
-					<td class="label">Cidade:</td>
-					<td>{{ leadership.city }}</td>
+					{% if leadership.neighborhood != '' %}
+						<td class="label">Bairro:</td>
+						<td>{{ leadership.neighborhood }}</td>
+					{% endif %}
+					{% if leadership.cep %}
+						<td class="label">CEP:</td>
+						<td>{{ leadership.cep }}</td>
+					{% endif %}
+					{% if leadership.city %}
+						<td class="label">Cidade:</td>
+						<td>{{ leadership.city }}</td>
+					{% endif %}
 				</tr>
 				<tr>
-					<td class="label">Telefone:</td>
-					<td>{{ leadership.phone_number }}</td>
-					<td class="label">Celular:</td>
-					<td>{{ leadership.cellphone }}</td>
-					<td class="label">Residencial:</td>
-					<td>{{ leadership.phone_home }}</td>
+					{% if leadership.phone_number %}
+						<td class="label">Telefone:</td>
+						<td>{{ leadership.phone_number }}</td>
+					{% endif %}
+					{% if leadership.cellphone %}
+						<td class="label">Celular:</td>
+						<td>{{ leadership.cellphone }}</td>
+					{% endif %}
+					{% if leadership.phone_home %}
+						<td class="label">Residencial:</td>
+						<td>{{ leadership.phone_home }}</td>
+					{% endif %}
 				</tr>
 				<tr>
-                    <td class="label">Email:</td>
-					<td>{{ leadership.email }}</td>
-					<td class="label">Nascimento:</td>
-					<td>{{ leadership.birth }}</td>
+					{% if leadership.email %}
+						<td class="label">Email:</td>
+						<td>{{ leadership.email }}</td>
+					{% endif %}
+					{% if leadership.birth %}
+						<td class="label">Nascimento:</td>
+						<td>{{ leadership.birth }}</td>
+					{% endif %}
                 </tr>
+				<tr>
+					{% if leadership.office %}
+						<td class="label">Cargo(Ref):</td>
+						<td>{{ leadership.office }}</td>
+					{% endif %}
+					{% if leadership.pendency %}
+						<td class="label">Pendência:</td>
+						<td>{{ leadership.pendency }}</td>
+					{% endif %}
+				</tr>
 				<tr class="last-tr">
-					<td class="label">Observação:</td>
-					<td>{{ leadership.note }}</td>
-					<td class="label">Cargo(Ref):</td>
-					<td>{{ leadership.office }}</td>
-					<td class="label">Pendência:</td>
-					<td>{{ leadership.pendency }}</td>
+					{% if leadership.note %}
+						<td class="label">Observação:</td>
+						<td>{{ leadership.note }}</td>
+						<td colspan="7" class="label"></td>
+					{% else %}
+						<td colspan="8" class="label"></td>
+					{% endif %}
 				</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
-	
  </body>
 </html>

@@ -1,50 +1,36 @@
 <html>
 	<head>
 		<title>Relatório Clientes</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Playfair+Display:wght@500&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
    		<style>
-		   @charset "UTF-8";
-		   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
-		   @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital@1&display=swap");
-		   @page {
-			    size: A4 landscape;;
-		     	margin: 1cm;
-				counter-increment: page;
-  				@bottom-left {
-    				color: #a9a;
-    				content: 'Mala Direta - Romero Rodrigues';
-    				font-family: 'PT Sans';
-    				font-size: 9pt; }
-				@bottom-right {
-    				color: #a9a;
-    				content: 'Pág ' counter(page) " de " counter(pages);
-    				font-family: 'PT Sans';
-    				font-size: 9pt; } }
-			html {
-				color: #14213d;
-				font-family: 'Quicksand';
+		   html {
+				color: #000000;
+				font-family: 'Work Sans', sans-serif;
   				font-size: 11pt;
-  				line-height: 1.6; }
-  				html body {
-  					margin: 0; }
-  				html h1 {
-  					color: #0a271b;
-  					font-family: 'PT Sans';
-  					font-size: 40pt;
-  					margin: 0; }
-				html table {
-					border-collapse: collapse;
-    				width: 100%; }
-				html table td {
-      				padding-top: 3mm; 
-					text-align: left; }
-				.label {
-					font-weight: bold; }
-				.last-tr {
-					border-bottom: .2mm solid #a9a; } }
+  				line-height: 1.6;}
+  			html body {
+  				margin: 0; }
+  			html h1 {
+  				color: #000000;
+  				font-family: 'Playfair Display', serif;
+  				font-size: 40pt;
+  				margin: 0; }
+			html table {
+				border-collapse: collapse;
+    			width: 100%;}
+			html table td {
+      			padding-top: 3mm; 
+				text-align: left; }
+			.last-tr {
+				border-bottom: .2mm solid rgb(0, 0, 0); }
+			.label {
+				font-family: 'Playfair Display', serif;
+			}
    		</style>
 	</head>
 <body>
-	<h1>Lista de Clientes</h1>
+	<h1>Lista de Clientes - Mala Direta</h1>
 	<hr>
 	<div class="table-div">
 		<table>
@@ -53,44 +39,78 @@
 				<tr>
 					<td class="label">Nome:</td>
 					<td>{{ customer.name }}</td>
-					<td class="label">Pseudonimo:</td>
-					<td>{{ customer.nickname }}</td>
-					<td class="label">Rua:</td>
-					<td>{{ customer.street }}</td>
-					<td class="label">Número:</td>
-					<td>{{ customer.number }}</td>
+					{% if customer.nickname %}
+						<td class="label">Pseudonimo:</td>
+						<td>{{ customer.nickname }}</td>
+					{% endif %}
+					{% if customer.street %} 
+						<td class="label">Rua:</td>
+						<td>{{ customer.street }}</td>
+					{% endif %}
+					{% if customer.number %}
+						<td class="label">Nº:</td>
+						<td>{{ customer.number }}</td>
+					{% endif %}
 				</tr>
 				<tr>
-					<td class="label">Bairro:</td>
-					<td>{{ customer.neighborhood }}</td>
-					<td class="label">CEP:</td>
-					<td>{{ customer.cep }}</td>
-					<td class="label">Cidade:</td>
-					<td>{{ customer.city }}</td>
+					{% if customer.neighborhood %}
+						<td class="label">Bairro:</td>
+						<td>{{ customer.neighborhood }}</td>
+					{% endif %}
+					{% if customer.cep %}
+						<td class="label">CEP:</td>
+						<td>{{ customer.cep }}</td>
+					{% endif %}
+					{% if customer.city %}
+						<td class="label">Cidade:</td>
+						<td>{{ customer.city }}</td>
+					{% endif %}
 				</tr>
 				<tr>
-					<td class="label">Telefone:</td>
-					<td>{{ customer.phone_number }}</td>
-					<td class="label">Celular:</td>
-					<td>{{ customer.cellphone }}</td>
-					<td class="label">Residencial:</td>
-					<td>{{ customer.phone_home }}</td>
+					{% if customer.phone_number %}
+						<td class="label">Telefone:</td>
+						<td>{{ customer.phone_number }}</td>
+					{% endif %}
+					{% if customer.cellphone %}
+						<td class="label">Celular:</td>
+						<td>{{ customer.cellphone }}</td>
+					{% endif %}
+					{% if customer.phone_home %}
+						<td class="label">Residencial:</td>
+						<td>{{ customer.phone_home }}</td>
+					{% endif %}
 				</tr>
 				<tr>
-                    <td class="label">Email:</td>
-                    <td>{{ customer.email }}</td>
-                    <td class="label">Liderança</td>
-                    <td>{{ customer.leadership }}</td>
-                    <td class="label">Referência:</td>
-                    <td>{{ customer.reference }}</td>
+					{% if customer.email %}
+                    	<td class="label">Email:</td>
+                    	<td>{{ customer.email }}</td>
+					{% endif %}
+					{% if customer.leadership %}
+                    	<td class="label">Liderança</td>
+                    	<td>{{ customer.leadership }}</td>
+					{% endif %}
+					{% if customer.reference %}
+                    	<td class="label">Referência:</td>
+                    	<td>{{ customer.reference }}</td>
+					{% endif %}
                 </tr>
+				<tr>
+					{% if customer.profession %}
+						<td class="label">Profissão:</td>
+						<td>{{ customer.profession }}</td>
+					{% endif %}
+					{% if customer.recurrence %}
+						<td class="label">Retorno:</td>
+						<td>{{ customer.recurrence }}</td>
+					{% endif %}
+				</tr>
 				<tr class="last-tr">
-					<td class="label">Observação:</td>
-					<td>{{ customer.note }}</td>
-					<td class="label">Profissão:</td>
-					<td>{{ customer.profession }}</td>
-					<td class="label">Retorno:</td>
-					<td>{{ customer.recurrence }}</td>
+					{% if customer.note %}
+						<td class="label">Observação:</td>
+						<td colspan="7">{{ customer.note }}</td>
+					{% else %}
+						<td colspan="8" class="label"></td>
+					{% endif %}
 				</tr>
 				{% endfor %}
 			</tbody>
