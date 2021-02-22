@@ -2,6 +2,7 @@ from customers.models import Customer
 from leadership.models import Leadership
 from authorities.models import Authoritie
 from candidates.models import Candidate
+from solicitations.models import Solicitation
 
 class Generate(object):
 
@@ -177,4 +178,35 @@ class Generate(object):
                         'city_councilor': city_councilor}
 
         return candidates
+    
+    def statistic_solicitations(self):
+        total = Solicitation.objects.count()
+
+        # OPENED
+        opened = Solicitation.objects.filter(situation = 'ABERTO').count()
+        percentage_opened = round((100*opened)/total, 1) if total > 0 else 0
+
+        # PROGRESS
+        progress = Solicitation.objects.filter(situation = 'ANDAMENTO').count()
+        percentage_progress = round((100*progress)/total, 1) if total > 0 else 0
+
+        # DONE
+        done = Solicitation.objects.filter(situation = 'CONCLUIDO').count()
+        percentage_done = round((100*done)/total, 1) if total > 0 else 0
+
+        # CANCELED
+        canceled = Solicitation.objects.filter(situation = 'CANCELADO').count()
+        percentage_canceled = round((100*canceled)/total, 1) if total > 0 else 0
+
+        solicitations = {'total': total,
+                            'opened': opened,
+                            'percentage_opened': percentage_opened,
+                            'progress': progress,
+                            'percentage_progress': percentage_progress,
+                            'done': done,
+                            'percentage_done': percentage_done,
+                            'canceled': canceled,
+                            'percentage_canceled': percentage_canceled}
+
+        return solicitations
         

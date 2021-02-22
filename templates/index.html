@@ -150,6 +150,37 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="top-campaign">
+                <h3 class="title-3 m-b-30">Pleitos</h3>
+                <div class="table-responsive">
+                    <table class="table table-top-campaign">
+                        <tbody>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ solicitations.total }}</td>
+                            </tr>
+                            <tr>
+                                <td>Pleitos abertos</td>
+                                <td>{{ solicitations.opened }} - {{ solicitations.percentage_opened }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Pleitos em andamento</td>
+                                <td>{{ solicitations.progress }} - {{ solicitations.percentage_progress }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Pleitos concluídos</td>
+                                <td>{{ solicitations.done }} - {{ solicitations.percentage_done }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Pleitos cancelados</td>
+                                <td>{{ solicitations.canceled }} - {{ solicitations.percentage_canceled }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}  

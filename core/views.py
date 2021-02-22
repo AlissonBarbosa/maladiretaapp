@@ -26,10 +26,12 @@ def index(request):
     leadership = generate.statistic_leadership()
     authorities = generate.statistic_authorities()
     candidates = generate.statistic_candidates()
+    solicitations = generate.statistic_solicitations()
     context = {'customers': customers,
                 'leadership': leadership,
                 'authorities': authorities,
-                'candidates': candidates}
+                'candidates': candidates,
+                'solicitations': solicitations}
     return render(request, 'index.html', context)
 
 def export_pdf(html_string, filename):
