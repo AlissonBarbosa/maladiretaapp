@@ -23,7 +23,7 @@ class LeadershipForm(forms.ModelForm):
             'nickname': 'Pseudonimo',
             'note': 'Observação',
             'position': 'Cargo',
-            'office': 'Cargo(Avulso)',
+            'office': 'Referência',
             'pendency': 'Pendência'
         }
         widgets = {
