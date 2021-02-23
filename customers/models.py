@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+import datetime
 
 class CustomerManager(models.Manager):
     def search(self, query):
