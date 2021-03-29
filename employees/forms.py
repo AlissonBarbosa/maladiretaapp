@@ -23,22 +23,22 @@ class EmployeeForm(forms.ModelForm):
             'note': 'Observação'
         }
         widgets = {
-            'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'birth': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'nickname': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'city': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'street': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'complement': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'cep': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'data-mask':"00.000-000"}),
-            'state': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'neighborhood': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'phone_number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'placeholder': '(xx)xxxx-xxxx', 'data-mask':"(00)0000-0000"}),
-            'phone_home': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'placeholder': '(xx)xxxx-xxxx', 'data-mask':"(00)0000-0000"}),
-            'cellphone': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'placeholder': '(xx)xxxxx-xxxx', 'data-mask':"(00)00000-0000"}),
-            'function': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'note': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'})
+            'name': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'birth': forms.DateInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'nickname': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'city': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'street': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'number': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'complement': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'cep': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off', 'data-mask':"00.000-000"}),
+            'state': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'neighborhood': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'phone_number': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off', 'data-mask':"(00)0000-0000"}),
+            'phone_home': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off', 'data-mask':"(00)0000-0000"}),
+            'cellphone': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off', 'data-mask':"(00)00000-0000"}),
+            'function': forms.TextInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'email': forms.EmailInput(attrs={'class':"form-control valid", 'autocomplete': 'off'}),
+            'note': forms.Textarea(attrs={'class':"form-control valid", 'autocomplete': 'off'})
         }
         error_messages = {
             'name': {
