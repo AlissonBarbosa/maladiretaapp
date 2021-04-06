@@ -7,85 +7,126 @@
 			<div class="card">
 				<div class="card-header">Instituição</div>
 				<div class="card-body">
-					<div class="form-group">
-						<label class="control-label mb-1" disabled="">Nome:</label>
-						<input type="text" placeholder="{{ institution.name }}" disabled="" class="form-control">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<label class="control-label mb-1" disabled="">Nome:</label>
+								<input type="text" placeholder="{{ institution.name }}" disabled="" class="form-control">
+							</div>
+						</div>
 					</div>
 					<div class="row">
-						<div class="col-8">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label mb-1">Rua:</label>
-								<input type="text" placeholder="{{ institution.street }}" disabled="" class="form-control">
+								{% if institution.street %}
+									<input type="text" placeholder="{{ institution.street }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-						<div class="col-4">
+						<div class="col-md-2">
 							<div class="form-group">
 								<label class="control-label mb-1">Número:</label>
-								<input type="text" placeholder="{{ institution.number }}" disabled="" class="form-control">
+								{% if institution.number %}
+									<input type="text" placeholder="{{ institution.number }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label mb-1">Complemento:</label>
-								<input type="text" placeholder="{{ institution.complement }}" disabled="" class="form-control">
+								{% if institution.complement %}
+									<input type="text" placeholder="{{ institution.complement }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-						<div class="col-6">
+					</div>
+					<div class="row">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label mb-1">Bairro:</label>
-								<input type="text" placeholder="{{ institution.neighborhood }}" disabled="" class="form-control">
+								{% if institution.neighborhood %}
+									<input type="text" placeholder="{{ institution.neighborhood }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label mb-1">Cidade:</label>
-								<input type="text" placeholder="{{ institution.city }}" disabled="" class="form-control">
+								{% if institution.city %}
+									<input type="text" placeholder="{{ institution.city }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label mb-1">Estado:</label>
-								<input type="text" placeholder="{{ institution.state }}" disabled="" class="form-control">
+								{% if institution.state %}
+									<input type="text" placeholder="{{ institution.state }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-6">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label class="control-label mb-1">CEP:</label>
-								<input type="text" placeholder="{{ institution.cep }}" disabled="" class="form-control">
+								{% if institution.cep %}
+									<input type="text" placeholder="{{ institution.cep }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label class="control-label mb-1">Email:</label>
-								<input type="text" placeholder="{{ institution.email }}" disabled="" class="form-control">
+								{% if institution.email %}
+									<input type="text" placeholder="{{ institution.email }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label class="control-label mb-1">Telefone:</label>
-								<input type="text" placeholder="{{ institution.phone_number }}" disabled="" class="form-control">
+								{% if institution.phone_number %}
+									<input type="text" placeholder="{{ institution.phone_number }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-8">
+						<div class="col-md-8">
 							<div class="form-group">
 								<label class="contro-label md-1">Observação:</label>
-								<textarea type="text" placeholder="{{ institution.note }}" disabled="" class="form-control"></textarea>
+								{% if institution.note %}
+									<textarea type="text" placeholder="{{ institution.note }}" disabled="" class="form-control"></textarea>
+								{% else %}
+									<textarea type="text" placeholder="{{ institution.note }}" disabled="" class="form-control"></textarea>
+								{% endif %}
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-6">
+						<div class="col-md-6">
 							<div class="form-actions form-group">
+								<button onclick="window.location.href='{% url 'institutions:editar' institution.pk %}'" class="btn btn-warning btn-md">Editar</button>
 								<button onclick="window.location.href='{% url 'institutions:instituicoes' %}'" class="btn btn-secondary btn-md">Voltar</button>
 							</div>
 						</div>
