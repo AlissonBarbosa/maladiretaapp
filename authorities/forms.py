@@ -16,9 +16,9 @@ class AuthoritieForm(forms.ModelForm):
         localized_fields = ('birth',)
         widgets = {
             'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'birth': forms.DateInput(attrs={'class':"form-control cc-name valid", 'type':'text', 'autocomplete': 'off', 'placeholder': 'dd/mm/aaaa', 'data-mask':"00/00/0000"}),
+            'birth': forms.DateInput(attrs={'class':"form-control cc-name valid", 'type':'text', 'autocomplete': 'off', 'data-mask':"00/00/0000"}),
             'email': forms.EmailInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'phone_number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'placeholder': '(xx)xxxxx-xxxx', 'data-mask':"(00)00000-0000"}),
+            'phone_number': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off', 'data-mask':"(00)00000-0000"}),
             'position': forms.Select(attrs={'class':"form-control cc-name valid"}),
             'institution': forms.Select(attrs={'class':"form-control cc-name valid"})
         }

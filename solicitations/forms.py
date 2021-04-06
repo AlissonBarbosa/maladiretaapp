@@ -24,8 +24,8 @@ class SolicitationForm(forms.ModelForm):
             'historic': 'Histórico'
         }
         widgets = {
-            'created': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'updated': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'created': forms.DateInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'updated': forms.DateInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'description': forms.Textarea(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'indication': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'value': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),

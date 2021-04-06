@@ -33,7 +33,7 @@ class CustomerForm(forms.ModelForm):
         }
         widgets = {
             'name': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
-            'birth': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
+            'birth': forms.DateInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'nickname': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'reference': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
             'city': forms.TextInput(attrs={'class':"form-control cc-name valid", 'autocomplete': 'off'}),
