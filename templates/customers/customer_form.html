@@ -15,13 +15,13 @@
 					<form action="" method="post" novalidate="novalidate">
 						{% csrf_token %}
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.name.label_tag }}</label>
                                     {{ form.name }}
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.nickname.label_tag }}</label>
                                     {{ form.nickname }}
@@ -29,35 +29,33 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.birth.label_tag }}</label>
                                     {{ form.birth }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.rg.label_tag }}</label>
                                     {{ form.rg }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.cpf.label_tag }}</label>
                                     {{ form.cpf }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.email.label_tag }}</label>
                                     {{ form.email }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.profession.label_tag }}</label>
                                     {{ form.profession }}
@@ -65,21 +63,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.phone_number.label_tag }}</label>
                                     {{ form.phone_number }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.phone_home.label_tag }}</label>
                                     {{ form.phone_home }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.cellphone.label_tag }}</label>
                                     {{ form.cellphone }}
@@ -87,13 +83,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.reference.label_tag }}</label>
                                     {{ form.reference }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.leadership.label_tag }}</label>
                                     {{ form.leadership }}
@@ -102,21 +98,19 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.subscription.label_tag }}</label>
                                     {{ form.subscription }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.zone.label_tag }}</label>
                                     {{ form.zone }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.section.label_tag }}</label>
                                     {{ form.section }}
@@ -125,41 +119,39 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.street.label_tag }}</label>
                                     {{ form.street }}
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.number.label_tag }}</label>
                                     {{ form.number }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.complement.label_tag }}</label>
                                     {{ form.complement }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.neighborhood.label_tag }}</label>
                                     {{ form.neighborhood }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="cc-payment" class="control-label mb-1">{{ form.cep.label_tag }}</label>
-                                    {{ form.cep }}
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.city.label_tag }}</label>
+                                    {{ form.city }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.state.label_tag }}</label>
                                     {{ form.state }}
@@ -167,13 +159,19 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.cep.label_tag }}</label>
+                                    {{ form.cep }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.location_reference.label_tag }}</label>
                                     {{ form.location_reference }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.recurrence.label_tag }}</label>
                                     {{ form.recurrence }}
@@ -181,7 +179,10 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.note.label_tag }}</label>
                                     {{ form.note }}
