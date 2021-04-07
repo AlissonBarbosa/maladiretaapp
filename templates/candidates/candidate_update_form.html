@@ -14,32 +14,34 @@
 				<div class="card-body">
 					<form action="" method="post" novalidate="novalidate">
 						{% csrf_token %}
-						<div class="form-group">
-							<label for="cc-payment" class="control-label mb-1">{{ form.name.label_tag }}</label>
-							{{ form.name }}
-						</div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="cc-payment" class="control-label mb-1">{{ form.party.label_tag }}</label>
-                                    {{ form.party }}
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.name.label_tag }}</label>
+                                    {{ form.name }}
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="cc-payment" class="control-label mb-1">{{ form.number.label_tag }}</label>
-                                    {{ form.number }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.position.label_tag }}</label>
                                     {{ form.position }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.party.label_tag }}</label>
+                                    {{ form.party }}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="cc-payment" class="control-label mb-1">{{ form.number.label_tag }}</label>
+                                    {{ form.number }}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">{{ form.votes.label_tag }}</label>
                                     {{ form.votes }}
