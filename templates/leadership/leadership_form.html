@@ -15,35 +15,33 @@
 					<form action="" method="post" novalidate="novalidate">
                         {% csrf_token %}
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.name.label_tag }}</label>
                                     {{ form.name }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.nickname.label_tag }}</label>
                                     {{ form.nickname }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.birth.label_tag }}</label>
                                     {{ form.birth }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.cpf.label_tag }}</label>
                                     {{ form.cpf }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.rg.label_tag }}</label>
                                     {{ form.rg }}
@@ -51,27 +49,27 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.phone_number.label_tag }}</label>
                                     {{ form.phone_number }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.cellphone.label_tag }}</label>
                                     {{ form.cellphone }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.phone_home.label_tag }}</label>
                                     {{ form.phone_home }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.email.label_tag }}</label>
                                     {{ form.email }}
@@ -79,41 +77,39 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.street.label_tag }}</label>
                                     {{ form.street }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.number.label_tag }}</label>
                                     {{ form.number }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.complement.label_tag }}</label>
                                     {{ form.complement }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.neighborhood.label_tag }}</label>
                                     {{ form.neighborhood }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.city.label_tag }}</label>
                                     {{ form.city }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.state.label_tag }}</label>
                                     {{ form.state }}
@@ -121,13 +117,27 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.cep.label_tag }}</label>
                                     {{ form.cep }}
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-1">{{ form.position.label_tag }}</label>
+                                    {{ form.position }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-1">{{ form.office.label_tag }}</label>
+                                    {{ form.office }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.pendency.label_tag }}</label>
                                     {{ form.pendency }}
@@ -135,21 +145,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label class="control-label mb-1">{{ form.position.label_tag }}</label>
-                                    {{ form.position }}
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label class="control-label mb-1">{{ form.office.label_tag }}</label>
-                                    {{ form.office }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label class="control-label mb-1">{{ form.note.label_tag }}</label>
                                     {{ form.note }}
@@ -157,7 +153,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-md-4">
                                 <div class="form-actions form-group">
                                     <button type="submit" class="btn btn-primary btn-md">Salvar</button>
                                 </div>
