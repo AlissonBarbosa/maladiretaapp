@@ -15,29 +15,31 @@
 					<form action="" method="post" novalidate="novalidate">
 						{% csrf_token %}
 						<div class="row">
-							<div class="col-6">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label for="cc-payment" class="control-label mb-1">{{ form.position.label_tag }}</label>
 									{{ form.position }}
 								</div>
 							</div>
-							<div class="col-6">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label for="cc-payment" class="control-label mb-1">{{ form.handling.label_tag }}</label>
 									{{ form.handling }}
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-6">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label for="cc-payment" class="control-label mb-1">{{ form.abbreviation.label_tag }}</label>
 									{{ form.abbreviation }}
 								</div>
 							</div>
 						</div>
-						<div class="form-actions form-group">
-							<button type="submit" class="btn btn-primary btn-md">Salvar</button>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-actions form-group">
+									<button type="submit" class="btn btn-primary btn-md">Salvar</button>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>

@@ -8,29 +8,39 @@
 				<div class="card-header">Cargo</div>
 				<div class="card-body">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="cc-payment" class="control-label mb-1" disabled="">Nome:</label>
-								<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.position }}" disabled="" class="form-control">
+								{% if position.position %}
+									<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.position }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" id="disabled-input" name="disabled-input" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="cc-payment" class="control-label mb-1">Tratamento:</label>
-								<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.handling }}" disabled="" class="form-control">
+								{% if position.handling %}
+									<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.handling }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" id="disabled-input" name="disabled-input" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="cc-payment" class="control-label mb-1">Abreviação:</label>
-								<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.abbreviation }}" disabled="" class="form-control">
+								{% if position.abbreviation %}
+									<input type="text" id="disabled-input" name="disabled-input" placeholder="{{ position.abbreviation }}" disabled="" class="form-control">
+								{% else %}
+									<input type="text" id="disabled-input" name="disabled-input" placeholder="" disabled="" class="form-control">
+								{% endif %}
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-6">
+						<div class="col-md-4">
 							<div class="form-actions form-group">
 								<button onclick="window.location.href='{% url 'positions:editar' position.pk %}'" class="btn btn-warning btn-md">Editar</button>
 								<button onclick="window.location.href='{% url 'positions:cargos' %}'" class="btn btn-secondary btn-md">Voltar</button>
