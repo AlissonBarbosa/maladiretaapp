@@ -17,6 +17,11 @@ class LeadershipManager(models.Manager):
         elif "Referencia: " in query:
             office = query.split("Referencia: ")[1]
             return self.get_queryset().filter(models.Q(office__icontains=office))
+        elif "Entre: " in query:
+            first_day = query.split(":")[1].split(" e ")[0]
+            last_day = query.split(":")[1].split(" e ")[1].split(" ")[0]
+            month = query.split(" de ")[1]
+            return self.get_queryset().filter(models.Q(birth__day__gte=first_day)).filter(models.Q(birth__day__lte=last_day)).filter(models.Q(birth__month=month))
         else:
             return self.get_queryset().filter(models.Q(name__icontains=query) | 
                 models.Q(nickname__icontains=query) | 
