@@ -11,6 +11,8 @@ from weasyprint import HTML
 import tempfile
 from statistics.generate import Generate
 
+from fpdf import FPDF
+
 import io
 from django.http import FileResponse
 import pdfkit
@@ -192,3 +194,58 @@ def generate_report(request):
             return export_authoritie_pdf(Authoritie.objects.search(query_filter))
         else:
             return export_authoritie_pdf(Authoritie.objects.all())
+
+def export_customer_tags(query):
+    pdf = FPDF(orientation ='P', unit = 'mm', format='Letter')
+    pdf.set_margins(left=5, top=8, right=5)
+    pdf.set_auto_page_break(auto = True, margin = 10)
+    pdf.add_page()
+    pdf.set_font('Arial', '', 10)
+
+    x_ref = pdf.get_x()
+    width_tag = 69
+    count = 0
+    y_ref = pdf.get_y()
+    
+    # pdf.multi_cell(67, 5, text, 1, 'L')
+
+    # pdf.set_xy(x = x_ref + 67, y = y_ref)
+    # pdf.multi_cell(67, 5, text, 1, 'L')
+
+    # pdf.set_xy(x = x_ref + 67 + 67, y = y_ref)
+    # pdf.multi_cell(67, 5, text, 1, 'L')
+    # x_ref = pdf.get_x()
+    # y_ref = pdf.get_y()
+
+    # pdf.set_xy(x = x_ref, y = y_ref)
+    # pdf.multi_cell(67, 5, text, 1, 'L')
+    for i in range(30):
+        text = 'Prezado Alisson Barbosa\nRua das Orquídeas, 57\nJardim das Plantas\nCampina Grande - PB\n58415-000'
+        if count == 0:
+            x_ref = pdf.get_x()
+            y_ref = pdf.get_y()
+            count += 1
+        elif count == 1:
+            x_ref += width_tag
+            count += 1
+        elif count == 2:
+            x_ref += width_tag
+            count = 0
+        pdf.set_xy(x = x_ref, y = y_ref)
+        pdf.multi_cell(width_tag, 5.1, text, 1, 'L')
+            
+
+    response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
+    #response['Content-Type'] = 'application/pdf'
+    response['Content-Disposition'] = 'attachment;filename="Etiquetas.pdf"'
+    return response
+
+def generate_tags(request):
+    origin = request.session.get("query_origin")
+    query_filter = request.session.get("query_filter")
+
+    if origin == "Customer":
+        if query_filter:
+            return export_customer_tags(Customer.objects.search(query_filter))
+        else:
+            return export_customer_tags(Customer.objects.all()[:5000])
