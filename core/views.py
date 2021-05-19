@@ -197,30 +197,21 @@ def generate_report(request):
 
 def export_customer_tags(query):
     pdf = FPDF(orientation ='P', unit = 'mm', format='Letter')
-    pdf.set_margins(left=5, top=8, right=5)
+    pdf.set_margins(left=4, top=8, right=5)
     pdf.set_auto_page_break(auto = True, margin = 10)
     pdf.add_page()
     pdf.set_font('Arial', '', 10)
 
     x_ref = pdf.get_x()
-    width_tag = 69
+    width_tag = 69.6
     count = 0
     y_ref = pdf.get_y()
-    
-    # pdf.multi_cell(67, 5, text, 1, 'L')
-
-    # pdf.set_xy(x = x_ref + 67, y = y_ref)
-    # pdf.multi_cell(67, 5, text, 1, 'L')
-
-    # pdf.set_xy(x = x_ref + 67 + 67, y = y_ref)
-    # pdf.multi_cell(67, 5, text, 1, 'L')
-    # x_ref = pdf.get_x()
-    # y_ref = pdf.get_y()
-
-    # pdf.set_xy(x = x_ref, y = y_ref)
-    # pdf.multi_cell(67, 5, text, 1, 'L')
-    for i in range(30):
-        text = 'Prezado Alisson Barbosa\nRua das Orquídeas, 57\nJardim das Plantas\nCampina Grande - PB\n58415-000'
+    count_tag = 0
+    for customer in query:
+        if count_tag % 30 == 0 and count_tag > 0:
+            pdf.add_page()
+        #text = 'Prezado Alisson Barbosa\nRua das Orquídeas, 57\nJardim das Plantas\nCampina Grande - PB\n58415-000'
+        text = '{}\n{}, {}\n{}\n{}\n{}'.format(customer.name, customer.street, customer.number, customer.neighborhood, customer.city, customer.cep)
         if count == 0:
             x_ref = pdf.get_x()
             y_ref = pdf.get_y()
@@ -232,11 +223,11 @@ def export_customer_tags(query):
             x_ref += width_tag
             count = 0
         pdf.set_xy(x = x_ref, y = y_ref)
-        pdf.multi_cell(width_tag, 5.1, text, 1, 'L')
+        pdf.multi_cell(width_tag, 5.195, text, 0, 'L')
+        count_tag += 1
             
 
     response = HttpResponse(pdf.output(dest='S').encode('latin-1'))
-    #response['Content-Type'] = 'application/pdf'
     response['Content-Disposition'] = 'attachment;filename="Etiquetas.pdf"'
     return response
 
