@@ -211,7 +211,10 @@ def export_customer_tags(query):
         if count_tag % 30 == 0 and count_tag > 0:
             pdf.add_page()
         #text = 'Prezado Alisson Barbosa\nRua das Orquídeas, 57\nJardim das Plantas\nCampina Grande - PB\n58415-000'
-        text = '{}\n{}, {}\n{}\n{}\n{}'.format(customer.name, customer.street, customer.number, customer.neighborhood, customer.city, customer.cep)
+        if customer.complement:
+            text = '{}\n{}, {}\n{}, {}\n{}\n{}'.format(customer.name, customer.street, customer.number, customer.complement, customer.neighborhood, customer.city, customer.cep)
+        else:
+            text = '{}\n{}, {}\n{}\n{}\n{}'.format(customer.name, customer.street, customer.number, customer.neighborhood, customer.city, customer.cep)
         if count == 0:
             x_ref = pdf.get_x()
             y_ref = pdf.get_y()
@@ -240,3 +243,8 @@ def generate_tags(request):
             return export_customer_tags(Customer.objects.search(query_filter))
         else:
             return export_customer_tags(Customer.objects.all())
+    elif origin == "Leadership":
+        if query_filter:
+            return export_customer_tags(Leadership.objects.search(query_filter))
+        else:
+            return export_customer_tags(Leadership.objects.all())
