@@ -239,4 +239,4 @@ def generate_tags(request):
         if query_filter:
             return export_customer_tags(Customer.objects.search(query_filter))
         else:
-            return export_customer_tags(Customer.objects.all()[:5000])
+            return export_customer_tags(Customer.objects.all())

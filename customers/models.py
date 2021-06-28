@@ -16,12 +16,12 @@ class CustomerManager(models.Manager):
             return self.get_queryset().filter(models.Q(birth__day=day)).filter(models.Q(birth__month=month))
         elif "Mes:" in query:
             month = query.split(":")[1]
-            return self.get_queryset().filter(models.Q(birth__month=month))
+            return self.get_queryset().filter(models.Q(birth__month=month)).order_by('birth__month', 'birth__day')
         elif "Entre: " in query:
             first_day = query.split(":")[1].split(" e ")[0]
             last_day = query.split(":")[1].split(" e ")[1].split(" ")[0]
             month = query.split(" de ")[1]
-            return self.get_queryset().filter(models.Q(birth__day__gte=first_day)).filter(models.Q(birth__day__lte=last_day)).filter(models.Q(birth__month=month))
+            return self.get_queryset().filter(models.Q(birth__day__gte=first_day)).filter(models.Q(birth__day__lte=last_day)).filter(models.Q(birth__month=month)).order_by('birth__month', 'birth__day')
         return self.get_queryset().filter(models.Q(name__icontains=query) |
             models.Q(nickname__iexact=query) |
             models.Q(profession__icontains=query))

@@ -11,7 +11,7 @@ class AuthoritieManager(models.Manager):
             return self.get_queryset().filter(models.Q(birth__day=day)).filter(models.Q(birth__month=month))
         elif "Mes:" in query:
             month = query.split(":")[1]
-            return self.get_queryset().filter(models.Q(birth__month=month))
+            return self.get_queryset().filter(models.Q(birth__month=month)).order_by('birth__month', 'birth__day')
         elif "Cargo: " in query:
             position = query.split("Cargo: ")[1]
             return self.get_queryset().filter(models.Q(position__position__iexact=position))

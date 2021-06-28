@@ -103,6 +103,10 @@
 						<td class="label">Retorno:</td>
 						<td>{{ customer.recurrence }}</td>
 					{% endif %}
+					{% if customer.birth %}
+						<td class="label">Nascimento:</td>
+						<td>{{ customer.birth }}</td>
+					{% endif %}
 				</tr>
 				<tr class="last-tr">
 					{% if customer.note %}
